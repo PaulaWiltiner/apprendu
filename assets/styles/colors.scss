@@ -1,0 +1,44 @@
+$primary: (
+  '900': #453c5a,
+  '700': #645781,
+  '600': #7b61ff,
+  'base': #8350f2,
+  'shadow': rgba(131, 80, 242, 0.24),
+);
+
+$secondary: (
+  'base': #f2357b,
+  'shadow': rgba(242, 53, 123, 0.24),
+);
+
+$accent: (
+  'base': #f2cb05,
+);
+
+$background: (
+  'base': #282236,
+  'shadow': rgba(0, 0, 0, 0.08),
+  '200': #b6aad1,
+  '400': #645781,
+  '600': #453c5a,
+);
+
+$text: (
+  'base': #aaaaaa,
+);
+
+$colors: (
+  'primary': $primary,
+  'text': $text,
+  'secondary': $secondary,
+  'background': $background,
+  'accent': $accent,
+);
+
+:root {
+  @each $colorName, $colorMap in $colors {
+    @each $variation, $value in $colorMap {
+      --app-color-#{$colorName}-#{$variation}: #{$value};
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import 'animations';
+
+.app-input {
+  background-color: #645781;
+  border-radius: 3px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+
+  &::placeholder {
+    color: var(--app-color-text-base);
+  }
+}
+
+.app-button {
+  background-color: var(--app-color-primary-base);
+  width: 100%;
+  padding: 10px 0px;
+  border: 0;
+  border-radius: 3px;
+  transition: 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--app-color-primary-600);
+  }
+}
+
+.app-floating-image {
+  position: absolute;
+  width: 500px;
+
+  &.app-floating-image--top {
+    top: -145px;
+    left: -80px;
+    @include _bounce('bounce-top', rotate(-25deg));
+  }
+
+  &.app-floating-image--bottom {
+    bottom: -150px;
+    left: 100px;
+    @include _bounce('bounce-bottom', rotate(45deg));
+  }
+
+  &.app-floating-image--middle {
+    top: 15vh;
+    left: calc(50% - 298px);
+    @include _bounce('bounce-middle', rotate(0deg));
+  }
+}

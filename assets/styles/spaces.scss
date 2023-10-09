@@ -1,0 +1,50 @@
+$sizes: (
+  '1': 10px,
+  '2': 20px,
+  '3': 30px,
+  '4': 40px,
+  '5': 50px,
+  '6': 60px,
+  '7': 70px,
+  '8': 80px,
+);
+
+$props: 'mt', 'mr', 'mb', 'ml', 'my', 'mx', 'pt', 'pr', 'pb', 'pl', 'py', 'px';
+
+@each $key, $size in $sizes {
+  @each $prop in $props {
+    .app-#{$prop}-#{$key} {
+      @if $prop == 'mt' or $prop == 'my' {
+        margin-top: #{$size};
+      }
+
+      @if $prop == 'mb' or $prop == 'my' {
+        margin-bottom: #{$size};
+      }
+
+      @if $prop == 'ml' or $prop == 'mx' {
+        margin-left: #{$size};
+      }
+
+      @if $prop == 'mr' or $prop == 'mx' {
+        margin-right: #{$size};
+      }
+
+      @if $prop == 'pt' or $prop == 'py' {
+        padding-top: #{$size};
+      }
+
+      @if $prop == 'pb' or $prop == 'py' {
+        padding-bottom: #{$size};
+      }
+
+      @if $prop == 'pl' or $prop == 'px' {
+        padding-left: #{$size};
+      }
+
+      @if $prop == 'pr' or $prop == 'px' {
+        padding-right: #{$size};
+      }
+    }
+  }
+}

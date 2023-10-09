@@ -1,0 +1,12 @@
+@mixin _bounce($name, $props) {
+  @keyframes #{$name} {
+    0% {
+      transform: translateY(-50px) $props;
+    }
+    100% {
+      transform: translateY(50px) $props;
+    }
+  }
+
+  animation: 2s linear infinite alternate-reverse #{$name};
+}
