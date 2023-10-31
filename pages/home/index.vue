@@ -2,45 +2,48 @@
   <div class="app-home">
     <Header />
     <ScrollableCards>
-      <Progress :progress="50" />
-      <!-- Substitua 50 pelo valor desejado -->
-      <!-- <Card
+      <Card
         v-for="card in cards"
         :width="card.width"
         :height="card.height"
         :background="card.background"
         :shadow="card.shadow"
+        :clickable="card.clickable"
+        :to="card.to"
       >
-        <h3>{{ card.title }}</h3>
-        <p>{{ card.description }}</p>
-      </Card> -->
-      <!-- <OrderQuestion
-        v-model:is-correct="isCorrect"
-        :question="question"
-        :correctOrder="correctOrder"
-        :order="order"
-        background="linear-gradient(45deg, #c3a5c2, #7ec4cf)"
-      /> -->
-      <AssociationQuestion
-        :items="items"
-        :correctMatch="correctMatch"
-        question="Ligue os pontos corretamente"
-        v-model:is-correct="isCorrect"
-      />
+        <h3 class="title">{{ card.title }}</h3>
+        <p :class="card.text1 ? 'text1' : 'text'">{{ card.description }}</p>
+      </Card>
 
-      <!-- <MultipleChoice
-        question="escolha"
-        :options="['ola', 'hei']"
-        correctAnswer="ola"
-      ></MultipleChoice> -->
+      <div class="cardsLeft">
+        <Card
+          v-for="card in cardsTwo"
+          :width="card.width"
+          :height="card.height"
+          :background="card.background"
+          :shadow="card.shadow"
+          :clickable="card.clickable"
+          :to="card.to"
+        >
+          <h3 class="title">{{ card.title }}</h3>
+          <p class="text">{{ card.description }}</p>
+        </Card>
+      </div>
 
-      <notifications
-        classes="notification"
-        position="bottom right"
-        width="100%"
-      />
+      <Card
+        v-for="card in cardsThree"
+        :width="card.width"
+        :height="card.height"
+        :background="card.background"
+        :shadow="card.shadow"
+        :clickable="card.clickable"
+        :to="card.to"
+      >
+        <h3 class="title">{{ card.title }}</h3>
+        <p class="text">{{ card.description }}</p>
+      </Card>
     </ScrollableCards>
-    <Footer><Button @click="handleAnswer"></Button></Footer>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -48,207 +51,120 @@
 import Header from "@/components/Header.vue";
 import ScrollableCards from "@/components/ScrollableCards.vue";
 import Footer from "@/components/Footer.vue";
-import Progress from "@/components/Progress.vue";
-import OrderQuestion from "@/components/OrderQuestion.vue";
-import MultipleChoice from "@/components/MultipleChoice.vue";
-import AssociationQuestion from "@/components/AssociationQuestion.vue";
-
-import { useNotification } from "@kyvg/vue3-notification";
-
-const { notify } = useNotification();
-
-const correctOrder = [
-  "Hamburger",
-  "Pizza",
-  "Spaghetti",
-  "Tacos",
-  "Teriyaki Chicken",
-];
-
-const order = ["Pizza", "Hamburger", "Spaghetti", "Teriyaki Chicken", "Tacos"];
-
-const isCorrect = ref(false);
-const question = ref("Ordene as comidas");
-
-function handleAnswer() {
-  console.log("pass");
-  console.log(isCorrect.value, "value");
-  if (isCorrect.value) {
-    notify({
-      title: "This is the <em>title</em>",
-      text: "This is some <b>content</b>",
-      type: "success",
-      duration: 10000,
-      speed: 1000,
-    });
-  } else {
-    notify({
-      title: "This is the <em>title</em>",
-      text: "This is some <b>content</b>",
-      type: "error",
-      duration: 10000,
-      speed: 1000,
-    });
-  }
-}
-
-const items = reactive([
-  {
-    text1: "text 0",
-    text2: "text 0",
-    isStretching: false,
-    startX: null,
-    startY: null,
-    endX: null,
-    endY: null,
-    lineStyle: {
-      width: "5px",
-      transform: "rotate(0deg)",
-      transformOrigin: "0% 0%",
-    },
-  },
-  {
-    text1: "text 1",
-    text2: "text 1",
-    isStretching: false,
-    startX: null,
-    startY: null,
-    endX: null,
-    endY: null,
-    lineStyle: {
-      width: "5px",
-      transform: "rotate(0deg)",
-      transformOrigin: "0% 0%",
-    },
-  },
-  {
-    text1: "text 2",
-    text2: "text 2",
-    isStretching: false,
-    startX: null,
-    startY: null,
-    endX: null,
-    endY: null,
-    lineStyle: {
-      width: "5px",
-      transform: "rotate(0deg)",
-      transformOrigin: "0% 0%",
-    },
-  },
-  {
-    text1: "text 3",
-    text2: "text 3",
-    isStretching: false,
-    startX: null,
-    startY: null,
-    endX: null,
-    endY: null,
-    lineStyle: {
-      width: "5px",
-      transform: "rotate(0deg)",
-      transformOrigin: "0% 0%",
-    },
-  },
-]);
-
-const correctMatch = ref([
-  {
-    leftCardIndex: 0,
-    rightCardIndex: 2,
-  },
-  {
-    leftCardIndex: 1,
-    rightCardIndex: 0,
-  },
-  {
-    leftCardIndex: 2,
-    rightCardIndex: 1,
-  },
-  {
-    leftCardIndex: 3,
-    rightCardIndex: 3,
-  },
-]);
 
 interface Card {
-  id: number;
-  width: number;
-  height: number;
+  width: string;
+  height: string;
   background?: string;
   shadow: boolean;
   title: string;
   description: string;
+  clickable: boolean;
+  to: string;
+  text1?: boolean;
 }
 
 const cards = ref<Card[]>([
   {
-    id: 1,
-    width: 300,
-    height: 200,
-    background: "linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%)",
+    width: "100%",
+    height: "200px",
+    background: "url(/img/student.png)",
     shadow: true,
-    title: "Card 1",
-    description: "Conteúdo do Card 1",
+    title: "Apprendu",
+    description: "Estude de forma divertida e prática",
+    clickable: false,
+    to: "",
+    text1: true,
   },
   {
-    id: 2,
-    width: 400,
-    height: 300,
-    background: "lightblue",
+    width: "50%",
+    height: "120px",
+    background: "linear-gradient(45deg, #678ac9, #7ec4cf)",
     shadow: true,
-    title: "Card 2",
-    description: "Conteúdo do Card 2",
+    title: "Matemática",
+    description: "Acesse já! Se divirta com uma matemática descomplicada.",
+    clickable: true,
+    to: "/math",
   },
   {
-    id: 3,
-    width: 200,
-    height: 150,
-    background: "linear-gradient(45deg, #c3a5c2, #7ec4cf);",
+    width: "44%",
+    height: "120px",
+    background: "linear-gradient(45deg, #f39c76, #e5b9a8)",
     shadow: false,
-    title: "Card 3",
-    description: "Conteúdo do Card 3",
+    title: "Português",
+    description: "Conteúdos e jogos sobre gramática e muito mais.",
+    clickable: false,
+    to: "",
   },
-  // Adicione mais cards com tamanhos variáveis conforme necessário
+]);
+
+const cardsTwo = ref<Card[]>([
+  {
+    width: "100%",
+    height: "90px",
+    background: "linear-gradient(45deg, #ea8d5a, #f7ace4)",
+    shadow: false,
+    title: "Diversão",
+    description: "Aprenda de forma divertida e interativa",
+    clickable: false,
+    to: "",
+  },
+  {
+    width: "100%",
+    height: "90px",
+    background: "linear-gradient(45deg, #9266be, #bcb0e8)",
+    shadow: false,
+    title: "Contexto",
+    description: "Veja como usar o aprendizado no seu dia",
+    clickable: false,
+    to: "",
+  },
+]);
+
+const cardsThree = ref<Card[]>([
+  {
+    width: "40%",
+    height: "200px",
+    background: "url(/img/apprendu.svg)",
+    shadow: false,
+    title: "",
+    description: "",
+    clickable: false,
+    to: "",
+  },
+  {
+    width: "100%",
+    height: "200px",
+    background: "url(/img/celebration.svg)",
+    shadow: false,
+    title: "Realize o seu sonho!",
+    description: "Nós estamos aqui para ajudá-lo a alcançar os seus sonhos.",
+    clickable: false,
+    to: "",
+  },
 ]);
 </script>
 
-<style>
-.notification {
-  margin: 0 5px 5px;
-  padding: 10px;
-  font-size: 12px;
-  color: #ffffff;
-  height: 90px;
+<style scoped>
+.title {
+  white-space: nowrap;
+  font-size: 18px;
+}
 
-  background: #fc7e44;
-  border-left: 5px solid #187fe7;
+.text1 {
+  font-size: 14px;
+  width: 130px;
+}
 
-  &.success {
-    background: linear-gradient(45deg, #c3a5c2, #7ec4cf);
-    border-left-color: #42a85f;
-  }
+.text {
+  font-size: 14px;
+}
 
-  &.warn {
-    background: linear-gradient(45deg, #f39c76, #e5b9a8);
-    border-left-color: #f48a06;
-  }
-
-  &.error {
-    background: #f88884;
-    border-left-color: #e54d42;
-  }
-
-  .btn-orange {
-    background: linear-gradient(45deg, #f39c76, #e5b9a8);
-  }
-  .btn-purple {
-    background: linear-gradient(45deg, #735096, #9388ba);
-  }
-  .btn-blue {
-    background: linear-gradient(45deg, #3f5982, #7ec4cf);
-  }
-  .btn-other {
-    background: linear-gradient(45deg, #c3a5c2, #7ec4cf);
-  }
+.cardsLeft {
+  width: 54%;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 </style>

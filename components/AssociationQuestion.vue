@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h2 class="title">{{ props.question }}</h2>
+    <h2 class="title">{{ props.questionText }}</h2>
 
-    <div class="row wid" v-for="(item, index) in props.items" :key="index">
+    <div class="d-flex wid" v-for="(item, index) in props.options" :key="index">
       <Card
         :width="card.width"
+        :height="card.height"
         :background="card.background"
         :shadow="card.shadow"
         :padding-bottom="card.paddingBottom"
@@ -12,8 +13,10 @@
         :padding-left="card.paddingLeft"
         :padding-right="card.paddingRight"
         :has-button="card.hasButton"
+        center
       >
-        <p class="card-text text">{{ item.text1 }}</p>
+        <p v-if="item.text1" class="card-text text">{{ item.text1 }}</p>
+        <img v-if="item.img1" :src="item.img1" class="card-image" />
         <template #button>
           <button
             type="button"
@@ -39,12 +42,14 @@
         :shadow="card.shadow"
         :padding-bottom="card.paddingBottom"
         :padding-top="card.paddingTop"
-        :padding-left="16"
+        :padding-left="card.paddingLeft"
         :padding-right="card.paddingRight"
         :has-button="card.hasButton"
-        :is-left="true"
+        is-left
+        center
       >
-        <p class="card-text text">{{ item.text2 }}</p>
+        <p v-if="item.text2" class="card-text text">{{ item.text2 }}</p>
+        <img v-if="item.img2" :src="item.img2" class="card-image" />
         <template #button>
           <button
             type="button"
@@ -61,41 +66,43 @@
 import { ref } from "vue";
 
 const props = defineProps({
-  correctMatch: Array, // Recebe a ordem correta dos itens
-  items: Array,
-  question: String,
+  correctAnswer: Array,
+  options: Array,
+  questionText: String,
   isCorrect: Boolean,
   background: String,
+  useAnswer: Array,
 });
 
 const card = ref({
   id: 1,
-  width: 30,
+  width: "auto",
+  height: "auto",
   background:
     props.background ?? "linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%)",
   shadow: false,
   circle: false,
   paddingBottom: 10,
   paddingTop: 10,
-  paddingLeft: 5,
-  paddingRight: 5,
+  paddingLeft: 16,
+  paddingRight: 16,
   hasButton: true,
 });
 
 const rightButton = ref();
 const connectedPairs = ref([]);
 const startStretching = (index, event) => {
-  props.items[index].isStretching = true;
+  props.options[index].isStretching = true;
   connectedPairs.value.splice(
     0,
     connectedPairs.value.length,
     ...connectedPairs.value.filter((item) => item.leftCardIndex !== index)
   );
-  if (!props.items[index].startX) {
-    props.items[index].startX = getClientX(event);
-    props.items[index].endX = getClientX(event);
-    props.items[index].startY = getClientY(event);
-    props.items[index].endY = getClientY(event);
+  if (!props.options[index].startX) {
+    props.options[index].startX = getClientX(event);
+    props.options[index].endX = getClientX(event);
+    props.options[index].startY = getClientY(event);
+    props.options[index].endY = getClientY(event);
   }
 };
 
@@ -103,55 +110,55 @@ const stopStretching = (index) => {
   for (const [key, button] of rightButton.value.entries()) {
     const lineRect = button.getBoundingClientRect();
 
-    const mouseX = props.items[index].endX;
-    const mouseY = props.items[index].endY;
+    const mouseX = props.options[index].endX;
+    const mouseY = props.options[index].endY;
     if (
       mouseX >= lineRect.left &&
       mouseX <= lineRect.right &&
       mouseY >= lineRect.top &&
       mouseY <= lineRect.bottom
     ) {
-      props.items[index].startX = mouseX;
-      props.items[index].endX = mouseX;
-      props.items[index].startY = mouseY;
-      props.items[index].endY = mouseY;
+      props.options[index].startX = mouseX;
+      props.options[index].endX = mouseX;
+      props.options[index].startY = mouseY;
+      props.options[index].endY = mouseY;
       connectedPairs.value.push({
         leftCardIndex: index,
         rightCardIndex: key,
       });
       break;
-    } else if (key === props.items.length - 1) {
+    } else if (key === props.options.length - 1) {
       const newWidth = 0;
-      props.items[index].lineStyle = {
+      props.options[index].lineStyle = {
         width: `${newWidth}px`,
         transform: `rotate(0deg)`,
         transformOrigin: "0% 0%",
       };
-      props.items[index].isStretching = false;
-      props.items[index].startX = null;
-      props.items[index].endX = null;
-      props.items[index].startY = null;
-      props.items[index].endY = null;
+      props.options[index].isStretching = false;
+      props.options[index].startX = null;
+      props.options[index].endX = null;
+      props.options[index].startY = null;
+      props.options[index].endY = null;
     }
   }
 };
 
 const stretchLine = (index, event) => {
-  if (props.items[index].isStretching) {
-    props.items[index].endX = getClientX(event);
-    props.items[index].endY = getClientY(event);
+  if (props.options[index].isStretching) {
+    props.options[index].endX = getClientX(event);
+    props.options[index].endY = getClientY(event);
     const rote = calcularRotacao(
-      props.items[index].startX,
-      props.items[index].startY,
-      props.items[index].endX,
-      props.items[index].endY
+      props.options[index].startX,
+      props.options[index].startY,
+      props.options[index].endX,
+      props.options[index].endY
     );
     const newWidth = Math.sqrt(
-      Math.pow(props.items[index].endX - props.items[index].startX, 2) +
-        Math.pow(props.items[index].endY - props.items[index].startY, 2)
+      Math.pow(props.options[index].endX - props.options[index].startX, 2) +
+        Math.pow(props.options[index].endY - props.options[index].startY, 2)
     );
-    props.items[index].lineStyle = {
-      width: `${newWidth + 10}px`,
+    props.options[index].lineStyle = {
+      width: `${newWidth + 12}px`,
       transform: `rotate(${rote}deg)`,
       transformOrigin: "0% 0%",
     };
@@ -182,23 +189,41 @@ const getClientY = (event) => {
   return event.clientY;
 };
 
-const emits = defineEmits(["update:isCorrect"]);
+const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 watch(connectedPairs.value, (newArray) => {
   const isCorrect = newArray.every(
     (element, index) =>
-      element.leftCardIndex === props.correctMatch[index].leftCardIndex &&
-      element.rightCardIndex === props.correctMatch[index].rightCardIndex
+      element.leftCardIndex === props.correctAnswer[index].leftCardIndex &&
+      element.rightCardIndex === props.correctAnswer[index].rightCardIndex
   );
   emits("update:isCorrect", isCorrect);
+  emits(
+    "update:userAnswer",
+    newArray.map(({ leftCardIndex, rightCardIndex }) => {
+      const leftItem =
+        props.options[leftCardIndex].img1 ?? props.options[leftCardIndex].text1;
+      const rightItem =
+        props.options[rightCardIndex].img2 ??
+        props.options[rightCardIndex].text2;
+      return JSON.stringify({
+        leftItem,
+        rightItem,
+      });
+    })
+  );
 });
 </script>
 
 <style scoped>
+.card-image {
+  width: 40px;
+  height: 40px;
+}
 .elastic-line-container {
   position: relative;
   width: 100%;
-  height: 12px; /* Altura da linha em pixels */
-  cursor: pointer; /* Altera o cursor para um indicador de clique */
+  height: 12px;
+  cursor: pointer;
 }
 
 .wid {
@@ -227,13 +252,15 @@ watch(connectedPairs.value, (newArray) => {
 }
 .text {
   font-size: 13px;
+  text-align: center;
+  width: 60px;
 }
 
 .elastic-line {
   background: linear-gradient(45deg, #c3a5c2, #7ec4cf); /* Cor da linha */
   height: 12px;
   position: absolute;
-  z-index: -1;
+  z-index: -4;
   top: 0;
 }
 </style>

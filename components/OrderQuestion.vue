@@ -1,16 +1,18 @@
 <template>
-  <h2 class="title">{{ props.question }}</h2>
-  <draggable v-model="meals" tag="ul" class="draggable" item-key="meal">
-    <template #item="{ element: meal }">
+  <h2 class="title">{{ props.questionText }}</h2>
+  <draggable v-model="items" tag="ul" class="draggable" item-key="meal">
+    <template #item="{ element: option }">
       <Card
         :width="card.width"
+        :height="card.height"
         :background="card.background"
         :shadow="card.shadow"
         :circle="card.circle"
         :padding-bottom="card.paddingBottom"
         :padding-top="card.paddingTop"
+        center
       >
-        <p class="card-text text">{{ meal }}</p>
+        <p class="card-text text">{{ option }}</p>
       </Card>
     </template>
   </draggable>
@@ -21,16 +23,17 @@ import { ref } from "vue";
 import draggable from "vuedraggable";
 
 const props = defineProps({
-  correctOrder: Array, // Recebe a ordem correta dos itens
-  order: Array,
-  question: String,
+  correctAnswer: Array, // Recebe a ordem correta dos itens
+  options: Array,
+  questionText: String,
   isCorrect: Boolean,
   background: String,
+  userAnswer: Array,
 });
 
 const card = ref({
-  id: 1,
-  width: 100,
+  width: "100%",
+  height: "auto",
   background:
     props.background ?? "linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%)",
   shadow: true,
@@ -39,16 +42,17 @@ const card = ref({
   paddingTop: 10,
 });
 
-const emits = defineEmits(["update:isCorrect"]);
+const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 
-const meals = ref(props.order);
+const items = ref(props.options);
 watch(
-  () => meals.value,
-  (newMeals) => {
-    const isCorrect = newMeals.every(
-      (element, index) => element === props.correctOrder[index]
+  () => items.value,
+  (newOptions) => {
+    const isCorrect = newOptions.every(
+      (element, index) => element === props.correctAnswer[index]
     );
     emits("update:isCorrect", isCorrect);
+    emits("update:userAnswer", newOptions);
   }
 );
 </script>

@@ -1,40 +1,63 @@
 <template>
   <div>
-    <p>{{ question }}</p>
-    <div class="btn-group" role="group">
+    <h2 class="title mb-4">{{ question }}</h2>
+    <div class="d-flex flex-column align-items-start gap-2">
       <button
         v-for="(option, index) in options"
         :key="index"
-        :class="{
-          'btn btn-primary': selectedOption === option,
-          'btn btn-secondary': selectedOption !== option,
-        }"
-        @click="selectedOption = option"
+        type="button"
+        class="btn"
+        :class="{ 'btn-clicked': selectedOption === option }"
+        @click="selectOption(option)"
       >
         {{ option }}
       </button>
     </div>
-    <button @click="checkAnswer">Verificar</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 
 const props = defineProps({
   question: String,
   options: Array,
   correctAnswer: String,
+  isCorrect: Boolean,
+  userAnswer: String,
 });
+
+const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 
 const selectedOption = ref("");
 
-const checkAnswer = () => {
+function selectOption(option) {
+  selectedOption.value = option;
+  checkAnswer();
+}
+
+function checkAnswer() {
   const isCorrect = selectedOption.value === props.correctAnswer;
-  emit("answer", isCorrect);
-};
+  emits("update:isCorrect", isCorrect);
+  emits("update:userAnswer", selectedOption.value);
+}
 </script>
 
 <style scoped>
-/* Adicione estilos Bootstrap ou estilos personalizados aqui conforme necessário */
+.title {
+  color: black;
+  font-size: 18px;
+}
+
+.btn {
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #3f5982;
+}
+
+.btn-clicked {
+  background-color: #7ec4cf;
+  color: white;
+}
 </style>
