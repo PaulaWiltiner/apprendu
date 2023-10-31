@@ -184,11 +184,11 @@ const items = reactive([
   },
   {
     img1: "/img/mcdonalds.png",
-    text2: "google",
+    text2: "mcdonalds",
   },
   {
     img1: "/img/google.png",
-    text2: "mcdonalds",
+    text2: "google",
   },
 ]);
 
@@ -203,11 +203,11 @@ const correctMatch = ref([
   },
   {
     leftCardIndex: 2,
-    rightCardIndex: 3,
+    rightCardIndex: 2,
   },
   {
     leftCardIndex: 3,
-    rightCardIndex: 2,
+    rightCardIndex: 3,
   },
 ]);
 

@@ -44,7 +44,7 @@ const handleClick = () => {
   <button
     v-if="back"
     type="button"
-    class="btn btn-lg rounded-5 w-75 btn-back"
+    class="btn btn-lg rounded-5 w-60 btn-back"
     @click="handleClick"
   >
     <slot></slot>
