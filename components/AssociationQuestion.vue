@@ -20,7 +20,7 @@
         <template #button>
           <button
             type="button"
-            class="btn btn-purple rounded-5"
+            class="btn btn-purple rounded-5 shadow"
             @touchstart="(event) => startStretching(index, event)"
             @touchend="stopStretching(index)"
             @touchmove="(event) => stretchLine(index, event)"
@@ -50,7 +50,7 @@
         <template #button>
           <button
             type="button"
-            class="btn btn-right rounded-5"
+            class="btn btn-right rounded-5 shadow"
             ref="rightButton"
           ></button>
         </template>

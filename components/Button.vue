@@ -28,7 +28,7 @@ const handleClick = () => {
   <button
     v-if="confirm"
     type="button"
-    class="btn btn-lg rounded-5 w-75 btn-orange"
+    class="btn btn-lg rounded-5 w-75 btn-orange shadow-sm"
     @click="handleClick"
     :disabled="props.disabled"
   >
@@ -42,7 +42,7 @@ const handleClick = () => {
   <button
     v-if="next"
     type="button"
-    class="btn btn-lg rounded-5 w-0 btn-orange skeleton-loader"
+    class="btn btn-lg rounded-5 w-0 btn-orange shadow-sm"
     @click="handleClick"
   >
     <i class="bi bi-arrow-right icon-md"></i>
@@ -50,7 +50,7 @@ const handleClick = () => {
   <button
     v-if="previous"
     type="button"
-    class="btn btn-lg rounded-5 w-0 btn-orange"
+    class="btn btn-lg rounded-5 w-0 btn-orange shadow-sm"
     @click="handleClick"
   >
     <i class="bi bi-arrow-left icon-md"></i>
