@@ -192,13 +192,14 @@ const getClientY = (event) => {
 
 const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 watch(connectedPairs.value, (newArray) => {
-  const isCorrect = newArray.every((element) => {
-    const correct = props.correctAnswer.find(
-      (item) => item.leftCardIndex === element.rightCardIndex
-    );
+  const isCorrect =
+    newArray.every((element) => {
+      const correct = props.correctAnswer.find(
+        (item) => item.leftCardIndex === element.rightCardIndex
+      );
 
-    return element.rightCardIndex === correct.rightCardIndex;
-  });
+      return element.rightCardIndex === correct.rightCardIndex;
+    }) && newArray.length === props.correctAnswer.length;
   emits("update:isCorrect", isCorrect);
   emits(
     "update:userAnswer",

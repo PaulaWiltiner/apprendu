@@ -156,14 +156,15 @@ function generatePrompt(
 
 function closeNotification() {
   if (questions[currentQuestionIndex.value].isCorrect) {
+    if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
+      correctQuestions.value.push(currentQuestionIndex.value);
+      console.log(correctQuestions.value, "correctQuestions.value");
+    }
     if (currentQuestionIndex.value === questions.length - 1) {
       isScore.value = true;
     }
     if (currentQuestionIndex.value < questions.length - 1) {
       currentQuestionIndex.value++;
-    }
-    if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
-      correctQuestions.value.push(currentQuestionIndex.value);
     }
   }
   loading.value = false;
@@ -385,6 +386,7 @@ async function handleAnswer() {
 }
 
 function calculateScore(correctQuestions: number[]) {
+  console.log(correctQuestions, "correctQuestions");
   let totalWeight = 0;
 
   for (const index of correctQuestions) {
