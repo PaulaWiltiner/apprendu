@@ -20,7 +20,7 @@
         <template #button>
           <button
             type="button"
-            class="btn btn-purple rounded-5 shadow"
+            class="btn btn-purple rounded-3 shadow"
             @touchstart="(event) => startStretching(index, event)"
             @touchend="stopStretching(index)"
             @touchmove="(event) => stretchLine(index, event)"
@@ -50,7 +50,7 @@
         <template #button>
           <button
             type="button"
-            class="btn btn-right rounded-5 shadow"
+            class="btn btn-right rounded-3 shadow"
             ref="rightButton"
           ></button>
         </template>
@@ -264,7 +264,7 @@ watch(connectedPairs.value, (newArray) => {
   background: linear-gradient(45deg, #c3a5c2, #7ec4cf); /* Cor da linha */
   height: 12px;
   position: absolute;
-  z-index: -3;
+  z-index: -4;
   top: 0;
 }
 </style>

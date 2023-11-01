@@ -11,21 +11,14 @@
         v-model:is-correct="questions[currentQuestionIndex].isCorrect"
         v-model:user-answer="questions[currentQuestionIndex].userAnswer"
       />
-      <notifications
-        classes="notification"
-        position="bottom right"
-        width="100%"
-        @destroy="closeNotification"
-      >
-        <template v-slot:default="{ notification }">
-          <div class="custom-notification">
-            <div class="py-3">{{ notification.title }}</div>
-            <br />
-            <div>{{ notification.text }}</div>
-          </div>
-        </template>
-      </notifications>
     </ScrollableCards>
+    <Alert
+      :title="alert.title"
+      :text="alert.text"
+      :isSuccess="alert.isSuccess"
+      v-model:active="active"
+      @advance="nextAlert"
+    />
     <Footer
       :justify="!isContent ? 'center' : hasPrevious ? 'space-between' : 'right'"
     >
@@ -60,9 +53,16 @@ import ScrollableCards from "@/components/ScrollableCards.vue";
 import Footer from "@/components/Footer.vue";
 import Progress from "@/components/Progress.vue";
 import Score from "@/components/Score.vue";
+import Alert from "@/components/Alert.vue";
 import Content from "@/components/Content.vue";
 import { useAI } from "@/composables/AIExplanation";
-import { useNotification } from "@kyvg/vue3-notification";
+
+const active = ref(false);
+const alert = reactive({
+  title: "",
+  text: "",
+  isSuccess: true,
+});
 
 const { getAIExplanation } = useAI();
 const loading = ref<boolean>(false);
@@ -70,7 +70,6 @@ const loading = ref<boolean>(false);
 async function getAI(prompt: string) {
   return await getAIExplanation(prompt);
 }
-const { notify } = useNotification();
 
 const isContent = ref(true);
 const currentContentIndex = ref(0);
@@ -154,22 +153,19 @@ function generatePrompt(
   return prompt;
 }
 
-function closeNotification() {
-  if (questions[currentQuestionIndex.value].isCorrect) {
-    if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
-      correctQuestions.value.push(currentQuestionIndex.value);
-    }
-    if (
-      currentQuestionIndex.value === questions.length - 1 &&
-      questions[currentQuestionIndex.value].isCorrect
-    ) {
-      isScore.value = true;
-    }
-    if (currentQuestionIndex.value < questions.length - 1) {
-      currentQuestionIndex.value++;
-    }
+function nextAlert() {
+  if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
+    correctQuestions.value.push(currentQuestionIndex.value);
   }
-  loading.value = false;
+  if (
+    currentQuestionIndex.value === questions.length - 1 &&
+    questions[currentQuestionIndex.value].isCorrect
+  ) {
+    isScore.value = true;
+  }
+  if (currentQuestionIndex.value < questions.length - 1) {
+    currentQuestionIndex.value++;
+  }
 }
 
 const correctOrder = ref([
@@ -363,27 +359,23 @@ async function handleAnswer() {
     questionText,
     _correctAnswer,
     questions[currentQuestionIndex.value].userAnswer,
-    questions[currentQuestionIndex.value].props.options
+    _options
   );
 
   const text: string = await getAI(prompt);
   if (questions[currentQuestionIndex.value].isCorrect) {
-    notify({
-      title: "Parabéns!!",
-      text: text ?? "",
-      type: "success",
-      duration: 10000,
-      speed: 1000,
-    });
+    alert.title = "Parabéns!!";
+    alert.text = text ?? "";
+    alert.isSuccess = true;
+    active.value = true;
+    loading.value = false;
   } else {
     questions[currentQuestionIndex.value].userAnswerIsCorrect = false;
-    notify({
-      title: "Não foi dessa vez, tente novamente.",
-      text: text ?? "",
-      type: "error",
-      duration: 10000,
-      speed: 1000,
-    });
+    alert.title = "Não foi dessa vez.";
+    alert.text = text ?? "";
+    alert.isSuccess = false;
+    active.value = true;
+    loading.value = false;
   }
 }
 
@@ -415,43 +407,5 @@ const score = computed(() => calculateScore(correctQuestions.value));
 .no-padding {
   padding: 0px;
   margin: 0px;
-}
-.notification {
-  margin: 0 5px 5px;
-  padding: 10px;
-  font-size: 12px;
-  color: #ffffff;
-  height: 90px;
-
-  background: #fc7e44;
-  border-left: 5px solid #187fe7;
-
-  &.success {
-    background: #5dc27d;
-    border-left-color: #188b39;
-  }
-
-  &.warn {
-    background: linear-gradient(45deg, #f39c76, #e5b9a8);
-    border-left-color: #f48a06;
-  }
-
-  &.error {
-    background: #f88884;
-    border-left-color: #e54d42;
-  }
-
-  .btn-orange {
-    background: linear-gradient(45deg, #f39c76, #e5b9a8);
-  }
-  .btn-purple {
-    background: linear-gradient(45deg, #735096, #a8a1c5);
-  }
-  .btn-blue {
-    background: linear-gradient(45deg, #3f5982, #7ec4cf);
-  }
-  .btn-other {
-    background: linear-gradient(45deg, #c3a5c2, #7ec4cf);
-  }
 }
 </style>
