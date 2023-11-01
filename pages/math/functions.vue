@@ -29,8 +29,14 @@
     <Footer
       :justify="!isContent ? 'center' : hasPrevious ? 'space-between' : 'right'"
     >
-      <Button v-if="!isContent" @click="handleAnswer" confirm>
-        Confirmar
+      <Button
+        v-if="!isContent"
+        @click="handleAnswer"
+        :disabled="loading"
+        :loading="loading"
+        confirm
+      >
+        <p v-if="!loading" class="no-padding">Confirmar</p>
       </Button>
       <Button
         v-if="isContent && hasPrevious"
@@ -59,6 +65,7 @@ import { useAI } from "@/composables/AIExplanation";
 import { useNotification } from "@kyvg/vue3-notification";
 
 const { getAIExplanation } = useAI();
+const loading = ref<boolean>(false);
 
 async function getAI(prompt: string) {
   return await getAIExplanation(prompt);
@@ -159,6 +166,7 @@ function closeNotification() {
       correctQuestions.value.push(currentQuestionIndex.value);
     }
   }
+  loading.value = false;
 }
 
 const correctOrder = ref([
@@ -326,6 +334,7 @@ const progress = computed(
 );
 
 async function handleAnswer() {
+  loading.value = true;
   const questionText = `${
     questions[currentQuestionIndex.value].props.question ?? " "
   } ${questions[currentQuestionIndex.value].props.questionText ?? " "}`;
@@ -399,6 +408,10 @@ const score = computed(() => calculateScore(correctQuestions.value));
 </script>
 
 <style>
+.no-padding {
+  padding: 0px;
+  margin: 0px;
+}
 .notification {
   margin: 0 5px 5px;
   padding: 10px;

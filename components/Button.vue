@@ -7,6 +7,14 @@ const props = defineProps({
   info: Boolean,
   back: Boolean,
   previous: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emits = defineEmits(["click"]);
@@ -22,13 +30,19 @@ const handleClick = () => {
     type="button"
     class="btn btn-lg rounded-5 w-75 btn-orange"
     @click="handleClick"
+    :disabled="props.disabled"
   >
     <slot></slot>
+    <div
+      v-if="loading"
+      class="spinner-border spinner-border-sm"
+      role="status"
+    ></div>
   </button>
   <button
     v-if="next"
     type="button"
-    class="btn btn-lg rounded-5 w-0 btn-orange"
+    class="btn btn-lg rounded-5 w-0 btn-orange skeleton-loader"
     @click="handleClick"
   >
     <i class="bi bi-arrow-right icon-md"></i>

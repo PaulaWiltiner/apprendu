@@ -24,7 +24,6 @@ export function useAI() {
       );
 
       const explanation = response.data.choices[0].text;
-      console.log(explanation, "explana");
       return explanation;
     } catch (error) {
       console.error("Erro ao consultar a API:", error.message);
