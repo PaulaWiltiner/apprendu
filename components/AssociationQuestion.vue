@@ -144,8 +144,8 @@ const stopStretching = (index) => {
 
 const stretchLine = (index, event) => {
   if (props.options[index].isStretching) {
-    event.preventDefault(); // Prevent the default behavior (scrolling)
-    event.stopPropagation(); // Prevent event propagation
+    event.preventDefault();
+    event.stopPropagation();
     props.options[index].endX = getClientX(event);
     props.options[index].endY = getClientY(event);
     const rote = calcularRotacao(
@@ -159,7 +159,7 @@ const stretchLine = (index, event) => {
         Math.pow(props.options[index].endY - props.options[index].startY, 2)
     );
     props.options[index].lineStyle = {
-      width: `${newWidth + 12}px`,
+      width: `${newWidth}px`,
       transform: `rotate(${rote}deg)`,
       transformOrigin: "0% 0%",
     };
@@ -192,11 +192,13 @@ const getClientY = (event) => {
 
 const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 watch(connectedPairs.value, (newArray) => {
-  const isCorrect = newArray.every(
-    (element, index) =>
-      element.leftCardIndex === props.correctAnswer[index].leftCardIndex &&
-      element.rightCardIndex === props.correctAnswer[index].rightCardIndex
-  );
+  const isCorrect = newArray.every((element) => {
+    const correct = props.correctAnswer.find(
+      (item) => item.leftCardIndex === element.rightCardIndex
+    );
+
+    return element.rightCardIndex === correct.rightCardIndex;
+  });
   emits("update:isCorrect", isCorrect);
   emits(
     "update:userAnswer",
@@ -261,7 +263,7 @@ watch(connectedPairs.value, (newArray) => {
   background: linear-gradient(45deg, #c3a5c2, #7ec4cf); /* Cor da linha */
   height: 12px;
   position: absolute;
-  z-index: -4;
+  z-index: -3;
   top: 0;
 }
 </style>
