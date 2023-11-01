@@ -62,8 +62,6 @@
 <script setup>
 import { ref } from "vue";
 
-const isMobile = window.innerWidth <= 768;
-
 const props = defineProps({
   correctAnswer: Array,
   options: Array,
@@ -144,6 +142,7 @@ const stopStretching = (index) => {
 
 const stretchLine = (index, event) => {
   if (props.options[index].isStretching) {
+    event.preventDefault(); // Prevent the default behavior (scrolling)
     props.options[index].endX = getClientX(event);
     props.options[index].endY = getClientY(event);
     const rote = calcularRotacao(
