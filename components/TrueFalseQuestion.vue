@@ -85,7 +85,7 @@ const cardBackground = ref("#f39c76");
 }
 .btn-true.active,
 .btn-false.active {
-  background-color: #28a75f;
+  background-color: #7ec4cf;
   color: white;
 }
 </style>

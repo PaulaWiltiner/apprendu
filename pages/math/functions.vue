@@ -242,6 +242,20 @@ const questions = reactive([
   },
   {
     type: defineAsyncComponent({
+      loader: () => import("@/components/TrueFalseQuestion.vue"),
+    }),
+    props: {
+      question: "Analise a sentença abaixo:",
+      questionText: "A água ferve a 100°C.",
+      correctAnswer: "true",
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 7,
+    userAnswer: "",
+  },
+  {
+    type: defineAsyncComponent({
       loader: () => import("@/components/OrderQuestion.vue"),
     }),
     props: {
@@ -301,20 +315,6 @@ const questions = reactive([
     userAnswerIsCorrect: true,
     weight: 3,
     userAnswer: null,
-  },
-  {
-    type: defineAsyncComponent({
-      loader: () => import("@/components/TrueFalseQuestion.vue"),
-    }),
-    props: {
-      question: "Analise a sentença abaixo:",
-      questionText: "A água ferve a 100°C.",
-      correctAnswer: "true",
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 7,
-    userAnswer: "",
   },
 ]);
 
