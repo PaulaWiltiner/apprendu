@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      routes: ["/home", "/login", "/welcome"],
+      routes: ["/home"],
     },
   },
   runtimeConfig: {
