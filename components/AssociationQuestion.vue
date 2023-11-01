@@ -129,7 +129,7 @@ const stopStretching = (index) => {
     } else if (key === props.options.length - 1) {
       const newWidth = 0;
       props.options[index].lineStyle = {
-        width: `${newWidth}px`,
+        width: `${newWidth + 2}px`,
         transform: `rotate(0deg)`,
         transformOrigin: "0% 0%",
       };
