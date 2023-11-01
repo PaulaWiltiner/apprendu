@@ -21,7 +21,9 @@
           <button
             type="button"
             class="btn btn-purple rounded-5"
-            @mousedown="(event) => startStretching(index, event)"
+            @touchstart="(event) => startStretching(index, event)"
+            @touchend="stopStretching(index)"
+            @touchmove="(event) => stretchLine(index, event)"
           >
             <div class="elastic-line-container">
               <div class="elastic-line rounded-5" :style="item.lineStyle"></div>
@@ -49,7 +51,6 @@
           <button
             type="button"
             class="btn btn-right rounded-5"
-            @mouseup="(event) => stopStretching(index, event)"
             ref="rightButton"
           ></button>
         </template>
@@ -61,13 +62,15 @@
 <script setup>
 import { ref } from "vue";
 
+const isMobile = window.innerWidth <= 768;
+
 const props = defineProps({
   correctAnswer: Array,
   options: Array,
   questionText: String,
   isCorrect: Boolean,
   background: String,
-  useAnswer: Array,
+  userAnswer: Array,
 });
 
 const card = ref({
@@ -87,97 +90,91 @@ const card = ref({
 
 const rightButton = ref();
 const connectedPairs = ref([]);
-const leftIndex = ref();
-
-// Variáveis para armazenar as coordenadas
-let leftButtonCoords = { startX: null, startY: null };
-let rightButtonCoords = { startX: null, startY: null };
-
 const startStretching = (index, event) => {
   props.options[index].isStretching = true;
-  leftButtonCoords.startX = getClientX(event);
-  leftButtonCoords.startY = getClientY(event);
-  leftIndex.value = index;
-};
-
-const stopStretching = (index, event) => {
-  props.options[index].isStretching = false;
-  rightButtonCoords.startX = getClientX(event);
-  rightButtonCoords.startY = getClientY(event);
-
-  const leftCardIndex = leftIndex.value;
-  const rightCardIndex = index;
-
-  const isCorrectPair = checkCorrectPair(leftCardIndex, rightCardIndex);
-
-  if (isCorrectPair) {
-    addConnectedPair(leftCardIndex, rightCardIndex);
-  }
-
-  stretchLine(leftCardIndex);
-};
-
-// ...
-
-const checkCorrectPair = (leftCardIndex, rightCardIndex) => {
-  // Implemente a lógica para verificar se o par é correto com base em seus índices
-  // Por exemplo, compare com a lista props.correctAnswer
-
-  const correctAnswer = props.correctAnswer;
-  if (
-    correctAnswer &&
-    correctAnswer.some(
-      (pair) =>
-        (pair.leftCardIndex === leftCardIndex &&
-          pair.rightCardIndex === rightCardIndex) ||
-        (pair.leftCardIndex === rightCardIndex &&
-          pair.rightCardIndex === leftCardIndex)
-    )
-  ) {
-    return true;
-  }
-
-  return false;
-};
-
-const addConnectedPair = (leftCardIndex, rightCardIndex) => {
-  // Verifica se o par já está na lista
-  if (
-    !connectedPairs.value.some(
-      (pair) =>
-        (pair.leftCardIndex === leftCardIndex &&
-          pair.rightCardIndex === rightCardIndex) ||
-        (pair.leftCardIndex === rightCardIndex &&
-          pair.rightCardIndex === leftCardIndex)
-    )
-  ) {
-    // Adiciona o par à lista
-    connectedPairs.value.push({ leftCardIndex, rightCardIndex });
+  connectedPairs.value.splice(
+    0,
+    connectedPairs.value.length,
+    ...connectedPairs.value.filter((item) => item.leftCardIndex !== index)
+  );
+  if (!props.options[index].startX) {
+    props.options[index].startX = getClientX(event);
+    props.options[index].endX = getClientX(event);
+    props.options[index].startY = getClientY(event);
+    props.options[index].endY = getClientY(event);
   }
 };
 
-const stretchLine = (index) => {
-  if (
-    leftButtonCoords.startX !== null &&
-    leftButtonCoords.startY !== null &&
-    rightButtonCoords.startX !== null &&
-    rightButtonCoords.startY !== null
-  ) {
-    const deltaX = rightButtonCoords.startX - leftButtonCoords.startX;
-    const deltaY = rightButtonCoords.startY - leftButtonCoords.startY;
+const stopStretching = (index) => {
+  for (const [key, button] of rightButton.value.entries()) {
+    const lineRect = button.getBoundingClientRect();
 
-    const newWidth = Math.sqrt(deltaX ** 2 + deltaY ** 2);
-    const angleRad = Math.atan2(deltaY, deltaX);
-    const angleDeg = (angleRad * 180) / Math.PI;
+    const mouseX = props.options[index].endX;
+    const mouseY = props.options[index].endY;
+    if (
+      mouseX >= lineRect.left &&
+      mouseX <= lineRect.right &&
+      mouseY >= lineRect.top &&
+      mouseY <= lineRect.bottom
+    ) {
+      props.options[index].startX = mouseX;
+      props.options[index].endX = mouseX;
+      props.options[index].startY = mouseY;
+      props.options[index].endY = mouseY;
+      connectedPairs.value.push({
+        leftCardIndex: index,
+        rightCardIndex: key,
+      });
+      break;
+    } else if (key === props.options.length - 1) {
+      const newWidth = 0;
+      props.options[index].lineStyle = {
+        width: `${newWidth}px`,
+        transform: `rotate(0deg)`,
+        transformOrigin: "0% 0%",
+      };
+      props.options[index].isStretching = false;
+      props.options[index].startX = null;
+      props.options[index].endX = null;
+      props.options[index].startY = null;
+      props.options[index].endY = null;
+    }
+  }
+};
 
-    // Atualize a linha com as coordenadas calculadas
+const stretchLine = (index, event) => {
+  if (props.options[index].isStretching) {
+    props.options[index].endX = getClientX(event);
+    props.options[index].endY = getClientY(event);
+    const rote = calcularRotacao(
+      props.options[index].startX,
+      props.options[index].startY,
+      props.options[index].endX,
+      props.options[index].endY
+    );
+    const newWidth = Math.sqrt(
+      Math.pow(props.options[index].endX - props.options[index].startX, 2) +
+        Math.pow(props.options[index].endY - props.options[index].startY, 2)
+    );
     props.options[index].lineStyle = {
-      width: `${newWidth}px`,
-      transform: `rotate(${angleDeg}deg)`,
+      width: `${newWidth + 12}px`,
+      transform: `rotate(${rote}deg)`,
       transformOrigin: "0% 0%",
     };
   }
 };
+
+function calcularRotacao(xA, yA, xB, yB) {
+  const deltaX = xB - xA;
+  const deltaY = yB - yA;
+
+  const anguloRad = Math.atan2(deltaY, deltaX);
+
+  const anguloGraus = (anguloRad * 180) / Math.PI;
+
+  return Math.round(anguloGraus);
+}
+
 const getClientX = (event) => {
   if (event.type.startsWith("touch")) {
     return event.touches[0].clientX;
@@ -198,7 +195,7 @@ watch(connectedPairs.value, (newArray) => {
       element.leftCardIndex === props.correctAnswer[index].leftCardIndex &&
       element.rightCardIndex === props.correctAnswer[index].rightCardIndex
   );
-  emits("update:isCorrect", true);
+  emits("update:isCorrect", isCorrect);
   emits(
     "update:userAnswer",
     newArray.map(({ leftCardIndex, rightCardIndex }) => {
