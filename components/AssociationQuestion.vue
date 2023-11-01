@@ -89,6 +89,8 @@ const card = ref({
 const rightButton = ref();
 const connectedPairs = ref([]);
 const startStretching = (index, event) => {
+  event.preventDefault(); // Prevent the default behavior (scrolling)
+  event.stopPropagation(); // Prevent event propagation
   props.options[index].isStretching = true;
   connectedPairs.value.splice(
     0,
@@ -143,6 +145,7 @@ const stopStretching = (index) => {
 const stretchLine = (index, event) => {
   if (props.options[index].isStretching) {
     event.preventDefault(); // Prevent the default behavior (scrolling)
+    event.stopPropagation(); // Prevent event propagation
     props.options[index].endX = getClientX(event);
     props.options[index].endY = getClientY(event);
     const rote = calcularRotacao(
