@@ -158,9 +158,11 @@ function closeNotification() {
   if (questions[currentQuestionIndex.value].isCorrect) {
     if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
       correctQuestions.value.push(currentQuestionIndex.value);
-      console.log(correctQuestions.value, "correctQuestions.value");
     }
-    if (currentQuestionIndex.value === questions.length - 1) {
+    if (
+      currentQuestionIndex.value === questions.length - 1 &&
+      questions[currentQuestionIndex.value].isCorrect
+    ) {
       isScore.value = true;
     }
     if (currentQuestionIndex.value < questions.length - 1) {
