@@ -55,7 +55,15 @@ import Progress from "@/components/Progress.vue";
 import Score from "@/components/Score.vue";
 import Alert from "@/components/Alert.vue";
 import Content from "@/components/Content.vue";
+import OrderQuestion from "~/components/OrderQuestion.vue";
+import AssociationQuestion from "@/components/AssociationQuestion.vue";
+import FillInTheBlankQuestion from "@/components/FillInTheBlankQuestion.vue";
+import MultipleChoice from "@/components/MultipleChoice.vue";
+import TrueFalseQuestion from "@/components/TrueFalseQuestion.vue";
 import { useAI } from "@/composables/AIExplanation";
+import { useAPI } from "@/composables/API";
+
+const { sendAnswers } = useAPI();
 
 const active = ref(false);
 const alert = reactive({
@@ -153,7 +161,7 @@ function generatePrompt(
   return prompt;
 }
 
-function nextAlert() {
+async function nextAlert() {
   if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
     correctQuestions.value.push(currentQuestionIndex.value);
   }
@@ -161,6 +169,14 @@ function nextAlert() {
     currentQuestionIndex.value === questions.length - 1 &&
     questions[currentQuestionIndex.value].isCorrect
   ) {
+    let answers = {};
+    for (let i = 0; i < questions.length; i++) {
+      answers = {
+        ...answers,
+        [questions[i].name]: correctQuestions.value.includes(i),
+      };
+    }
+    await sendAnswers(answers);
     isScore.value = true;
   }
   if (currentQuestionIndex.value < questions.length - 1) {
@@ -220,10 +236,23 @@ const correctMatch = ref([
 
 const questions = reactive([
   {
+    type: OrderQuestion,
+    name: "OrderQuestion",
+    props: {
+      questionText: "Ordene corretamente na vertical",
+      correctAnswer: correctOrder.value,
+      options: order.value,
+      background: "linear-gradient(45deg, #c3a5c2, #7ec4cf)",
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 2,
+    userAnswer: null,
+  },
+  {
     isAssociationQuestion: true,
-    type: defineAsyncComponent({
-      loader: () => import("@/components/AssociationQuestion.vue"),
-    }),
+    type: AssociationQuestion,
+    name: "AssociationQuestion",
     props: {
       options: items.map((item) => ({
         ...item,
@@ -248,9 +277,8 @@ const questions = reactive([
     userAnswer: null,
   },
   {
-    type: defineAsyncComponent({
-      loader: () => import("@/components/TrueFalseQuestion.vue"),
-    }),
+    type: TrueFalseQuestion,
+    name: "TrueFalseQuestion",
     props: {
       question: "Analise a sentença abaixo:",
       questionText: "A água ferve a 100°C.",
@@ -262,24 +290,8 @@ const questions = reactive([
     userAnswer: "",
   },
   {
-    type: defineAsyncComponent({
-      loader: () => import("@/components/OrderQuestion.vue"),
-    }),
-    props: {
-      questionText: "Ordene corretamente na vertical",
-      correctAnswer: correctOrder.value,
-      options: order.value,
-      background: "linear-gradient(45deg, #c3a5c2, #7ec4cf)",
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 2,
-    userAnswer: null,
-  },
-  {
-    type: defineAsyncComponent({
-      loader: () => import("@/components/FillInTheBlankQuestion.vue"),
-    }),
+    type: FillInTheBlankQuestion,
+    name: "FillInTheBlankQuestion",
     props: {
       question: "Complete a frase:",
       questionText:
@@ -294,9 +306,8 @@ const questions = reactive([
     userAnswer: null,
   },
   {
-    type: defineAsyncComponent({
-      loader: () => import("@/components/MultipleChoice.vue"),
-    }),
+    type: MultipleChoice,
+    name: "MultipleChoice",
     props: {
       question: "Qual é a capital do Brasil?",
       options: ["Rio de Janeiro", "Brasília", "São Paulo", "Salvador"],
@@ -308,9 +319,8 @@ const questions = reactive([
     userAnswer: null,
   },
   {
-    type: defineAsyncComponent({
-      loader: () => import("@/components/FillInTheBlankQuestion.vue"),
-    }),
+    type: FillInTheBlankQuestion,
+    name: "FillInTheBlankQuestion",
     props: {
       question: "Preencha o espaço em branco com o ano:",
       questionText:
@@ -380,7 +390,6 @@ async function handleAnswer() {
 }
 
 function calculateScore(correctQuestions: number[]) {
-  console.log(correctQuestions, "correctQuestions");
   let totalWeight = 0;
 
   for (const index of correctQuestions) {

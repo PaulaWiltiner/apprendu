@@ -1,5 +1,5 @@
 <template>
-  <div class="score-container" :style="{ background }">
+  <div v-if="!isEmail" class="score-container" :style="{ background }">
     <div class="score-content">
       <h1 class="score-title">Pontuação Final</h1>
       <div class="score-value">{{ score }} XP</div>
@@ -12,20 +12,27 @@
       <Button @click="goBack" back>Voltar para o módulo</Button>
     </div>
   </div>
+  <Email v-else />
 </template>
 
 <script setup>
+import Email from "@/components/Email.vue";
+
 const props = defineProps({
   background: String,
   score: Number,
   route: String,
 });
 
-const router = useRouter();
+const isEmail = ref(false);
 
 const goBack = () => {
-  router.push(props.route);
+  isEmail.value = true;
 };
+
+setTimeout(function () {
+  isEmail.value = true;
+}, 4000);
 </script>
 
 <style scoped>
