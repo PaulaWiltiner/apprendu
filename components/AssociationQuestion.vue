@@ -3,58 +3,29 @@
     <h2 class="title">{{ props.questionText }}</h2>
 
     <div class="d-flex wid" v-for="(item, index) in props.options" :key="index">
-      <Card
-        :width="card.width"
-        :height="card.height"
-        :background="card.background"
-        :shadow="card.shadow"
-        :padding-bottom="card.paddingBottom"
-        :padding-top="card.paddingTop"
-        :padding-left="card.paddingLeft"
-        :padding-right="card.paddingRight"
-        :has-button="card.hasButton"
-        center
+      <button
+        type="button"
+        class="btn btn-purple rounded-3 shadow format"
+        @touchstart="(event) => startStretching(index, event)"
+        @touchend="stopStretching(index)"
+        @touchmove="(event) => stretchLine(index, event)"
       >
         <p v-if="item.text1" class="card-text text">{{ item.text1 }}</p>
         <img v-if="item.img1" :src="item.img1" class="card-image" />
-        <template #button>
-          <button
-            type="button"
-            class="btn btn-purple rounded-3 shadow"
-            @touchstart="(event) => startStretching(index, event)"
-            @touchend="stopStretching(index)"
-            @touchmove="(event) => stretchLine(index, event)"
-          >
-            <div class="elastic-line-container">
-              <div class="elastic-line rounded-5" :style="item.lineStyle"></div>
-            </div>
-          </button>
-        </template>
-      </Card>
+      </button>
 
-      <Card
-        :width="card.width"
-        :height="card.height"
-        :background="card.background"
-        :shadow="card.shadow"
-        :padding-bottom="card.paddingBottom"
-        :padding-top="card.paddingTop"
-        :padding-left="card.paddingLeft"
-        :padding-right="card.paddingRight"
-        :has-button="card.hasButton"
-        is-left
-        center
+      <div class="elastic-line-container">
+        <div class="elastic-line rounded-5" :style="item.lineStyle"></div>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-right rounded-3 shadow format"
+        ref="rightButton"
       >
         <p v-if="item.text2" class="card-text text">{{ item.text2 }}</p>
         <img v-if="item.img2" :src="item.img2" class="card-image" />
-        <template #button>
-          <button
-            type="button"
-            class="btn btn-right rounded-3 shadow"
-            ref="rightButton"
-          ></button>
-        </template>
-      </Card>
+      </button>
     </div>
   </div>
 </template>
@@ -71,26 +42,12 @@ const props = defineProps({
   userAnswer: Array,
 });
 
-const card = ref({
-  id: 1,
-  width: "auto",
-  height: "auto",
-  background:
-    props.background ?? "linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%)",
-  shadow: false,
-  circle: false,
-  paddingBottom: 10,
-  paddingTop: 10,
-  paddingLeft: 16,
-  paddingRight: 16,
-  hasButton: true,
-});
-
 const rightButton = ref();
+
 const connectedPairs = ref([]);
 const startStretching = (index, event) => {
-  event.preventDefault(); // Prevent the default behavior (scrolling)
-  event.stopPropagation(); // Prevent event propagation
+  event.preventDefault();
+  event.stopPropagation();
   props.options[index].isStretching = true;
   connectedPairs.value.splice(
     0,
@@ -232,8 +189,10 @@ watch(connectedPairs.value, (newArray) => {
 
 .wid {
   width: 100%;
+  height: 4 60px;
   margin-top: 20px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -242,16 +201,16 @@ watch(connectedPairs.value, (newArray) => {
 }
 
 .btn-purple {
-  width: 3%;
+  width: 20%;
+  padding: 10px;
   background: #735096;
 }
 .btn-right {
-  z-index: 2;
-  height: 25px;
+  padding: 10px;
+  height: 100%;
   background: #735096;
 }
 .btn-blue {
-  z-index: 2;
   background: linear-gradient(45deg, #3f5982, #7ec4cf);
 }
 .text {

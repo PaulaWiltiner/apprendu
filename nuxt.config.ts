@@ -1,8 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
-  plugins: ["@/plugins/notification.client.ts"],
-  spaLoadingTemplate: false,
   css: [
     `assets/styles/main.scss`,
     `assets/styles/helpers.scss`,
@@ -18,6 +16,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       KEY_API: process.env.KEY_API,
+      GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+      SPREAD_SHEET_ID: process.env.SPREAD_SHEET_ID,
     },
   },
 });
