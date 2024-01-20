@@ -1,5 +1,23 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: ["@vite-pwa/nuxt"],
+  pwa: {
+    manifest: {
+      name: "Meu PWA",
+      short_name: "PWA",
+      description: "Meu Progressive Web App",
+      theme_color: "#ffffff",
+      start_url: "/home",
+      background_color: "#ffffff",
+      display: "standalone",
+      icons: [
+        {
+          src: "/icon.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+      ],
+    },
+  },
   ssr: false,
   css: [
     `assets/styles/main.scss`,
