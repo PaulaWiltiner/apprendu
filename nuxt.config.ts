@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ["@vite-pwa/nuxt"],
+  buildModules: ["@nuxtjs/pwa"],
   pwa: {
     manifest: {
       name: "Meu PWA",
@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       display: "standalone",
       icons: [
         {
-          src: "/icon.png",
+          src: "img/welcome.png",
           sizes: "192x192",
           type: "image/png",
         },
