@@ -165,10 +165,7 @@ async function nextAlert() {
   if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
     correctQuestions.value.push(currentQuestionIndex.value);
   }
-  if (
-    currentQuestionIndex.value === questions.length - 1 &&
-    questions[currentQuestionIndex.value].isCorrect
-  ) {
+  if (currentQuestionIndex.value === questions.length - 1) {
     let answers = {};
     for (let i = 0; i < questions.length; i++) {
       answers = {
