@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function useAI() {
   const apiUrl =
-    "https://api.openai.com/v1/engines/text-davinci-003/completions";
+    "https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct/completions";
   const { KEY_API } = useRuntimeConfig().public;
 
   const apiKey = KEY_API;
