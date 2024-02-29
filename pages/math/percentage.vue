@@ -86,7 +86,7 @@ const hasPrevious = computed(() => currentContentIndex.value > 0);
 const contents = reactive([
   `<h2><span style="color:#000000"><strong>Defini&ccedil;&atilde;o e Hist&oacute;ria</strong></span></h2>
 
-<p style="margin-left:40px"><img src="https://ckeditor.com/apps/ckfinder/userfiles/files/Design%20sem%20nome%20(2).png" style="height:400px; width:400px" /></p>
+<p style="text-align:center"><img src="/img/history_percentage.png" style="height:auto; width:100%" /></p>
 
 <p>Porcentagem &eacute; uma forma de representar uma parte de um todo em termos de 100 partes iguais <span style="color:#f39c76">(calma, vai ficar mais f&aacute;cil)</span></p>
 
@@ -106,7 +106,7 @@ const contents = reactive([
 				<li>Uma loja possui 100 camisetas que est&atilde;o &agrave; venda. Sabendo que 60 camisetas s&atilde;o da cor branca. Qual &eacute; a porcentagem de camisetas brancas desta loja?&nbsp;</li>
 			</ul>
 			</td>
-			<td style="width:336px"><img src="https://ckeditor.com/apps/ckfinder/userfiles/files/Design%20sem%20nome%20(5).png" style="height:300px; width:300px" /></td>
+			<td style="width:336px"><img src="/img/shopping.png" style="height:auto; width:100%" /></td>
 		</tr>
 		<tr>
 			<td style="width:439px">
@@ -114,16 +114,16 @@ const contents = reactive([
 				<li>Se uma pessoa comeu 4 peda&ccedil;os de uma pizza que cont&eacute;m 8 peda&ccedil;os, qual &eacute; a porcentagem da pizza que esta pessoa comeu?</li>
 			</ul>
 			</td>
-			<td style="width:336px"><img src="https://ckeditor.com/apps/ckfinder/userfiles/files/Design%20sem%20nome%20(4).png" style="height:300px; width:300px" /></td>
+			<td style="width:336px"><img src="/img/pizza.png"" style="height:auto; width:100%" /></td>
 		</tr>
 	</tbody>
 </table>
 `,
-  String.raw`<h2><strong>Como representar porcentagen</strong></h2>
+  String.raw`<h2><strong>Como representar porcentagem</strong></h2>
 
 <p>&nbsp;</p>
 
-<p>O s&iacute;mbolo utilizado para representar uma porcentagem &eacute; o percentual: % <img src="https://ckeditor.com/apps/ckfinder/userfiles/files/Design%20sem%20nome%20(3).png" style="float:right; height:100px; width:100px" /></p>
+<p>O s&iacute;mbolo utilizado para representar uma porcentagem &eacute; o percentual: % <img src="/img/percentage.png" style="float:right; height:auto; width:100px" /></p>
 
 <p style="text-align:center">$$ \text{X\%} = \dfrac{X}{100} $$</p>
 
@@ -199,7 +199,7 @@ String.raw`<h2><strong>Mas como calcular uma porcentagem?</strong></h2>
 			<p>E a <strong>PARTE</strong> que queremos descobrir &eacute; relativa &agrave;s camisetas brancas, que s&atilde;o 60 camisetas</p>
 			</td>
 			<td style="text-align:left; width:336px"><br />
-			<img src="https://ckeditor.com/apps/ckfinder/userfiles/files/3(1).png" style="height:280px; width:280px" /></td>
+			<img src="/img/owner_shopping.png" style="height:auto; width:100%" /></td>
 		</tr>
 	</tbody>
 </table>
@@ -228,7 +228,7 @@ String.raw`<h2><strong>Mais sobre Porcentagem</strong></h2>
 			<p>Vamos ver com um caso real&hellip; Nos primeiros exerc&iacute;cios descobrimos que Gabriel comeu 50% de uma pizza de 8 peda&ccedil;os.</p>
 			</td>
 			<td style="text-align:right; width:336px"><br />
-			<img src="https://ckeditor.com/apps/ckfinder/userfiles/files/Design%20sem%20nome%20(6).png" style="height:280px; width:280px" /></td>
+			<img src="/img/eat_pizza.png" style="height:auto; width:100%" /></td>
 		</tr>
 	</tbody>
 </table>
