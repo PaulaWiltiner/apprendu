@@ -184,8 +184,6 @@ String.raw`<h2><strong>Mas como calcular uma porcentagem?</strong></h2>
 
 <p><span style="color:#4e5f70"><strong>Relembrando o exemplo da loja de camisetas&hellip;</strong></span></p>
 
-<p>&nbsp;</p>
-
 <p>Se uma loja possui 100 camisetas e 60 s&atilde;o brancas, para calcularmos a porcentagem de camisetas brancas desta loja, vamos utilizar a f&oacute;rmula:</p>
 
 <p style="text-align:center"><span style="color:#9266be">$$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ (100) $$</span></p>

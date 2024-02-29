@@ -100,7 +100,7 @@ const cardOne = ref<Card[]>([
     background: "linear-gradient(45deg, #c3a5c2, #7ec4cf)",
     shadow: true,
     description: "Porcentagem",
-    img: "/img/percentage.png",
+    img: "/img/icon_percentage.png",
   },
 ]);
 
