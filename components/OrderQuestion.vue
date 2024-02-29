@@ -65,6 +65,7 @@ watch(
 
 .text {
   font-size: 13px;
+  color: #fff;
 }
 
 .draggable > div {

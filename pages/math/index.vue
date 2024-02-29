@@ -12,7 +12,7 @@
           :padding-top="14"
           :padding-bottom="14"
           :clickable="true"
-          to="/math/functions"
+          to="/math/percentage"
           center
         >
           <p class="full">{{ card.description }}</p>
@@ -99,8 +99,8 @@ const cardOne = ref<Card[]>([
     height: "90px",
     background: "linear-gradient(45deg, #c3a5c2, #7ec4cf)",
     shadow: true,
-    description: "Funções",
-    img: "/img/1.png",
+    description: "Porcentagem",
+    img: "/img/percentage.png",
   },
 ]);
 
@@ -177,5 +177,6 @@ const cardsLine5 = ref<Card[]>([
 .full {
   height: 10px;
   font-size: 14px;
+  color: #fff;
 }
 </style>

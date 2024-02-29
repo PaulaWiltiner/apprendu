@@ -1,7 +1,7 @@
 <template>
   <div class="scrollable-cards">
     <div class="container">
-      <div class="row container--height">
+      <div class="row container__row">
         <slot></slot>
       </div>
     </div>
@@ -18,7 +18,8 @@
   margin-right: 10px;
 }
 
-.container--height {
-  gap: 20px;
+.container__row {
+  gap: 22px;
+  justify-content: space-between;
 }
 </style>

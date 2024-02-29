@@ -1,92 +1,35 @@
 <template>
-  <div class="content-with-image">
-    <div v-if="title" class="title" :style="titleStyles">{{ title }}</div>
-
-    <div class="text-top" :style="textTopStyles">{{ textTop }}</div>
-
-    <div v-if="imageUrl" class="image">
-      <img :src="imageUrl" class="content-image" alt="Imagem" />
-    </div>
-
-    <div v-if="textBottom" class="text-bottom" :style="textBottomStyles">
-      {{ textBottom }}
-    </div>
+  <div ref="content" class="content-with-image">
+    <div v-html="renderedContent" />
   </div>
 </template>
 
 <script setup>
+import { defineProps, onMounted } from "vue";
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
 const props = defineProps({
-  title: String,
-  titleColor: {
-    type: String,
-    default: "black",
-  },
-  titleFontSize: Number,
-  textTop: String,
-  textBottom: String,
-  imageUrl: String,
-  textColorTop: {
-    type: String,
-    default: "black",
-  },
-  textColorBottom: {
-    type: String,
-    default: "black",
-  },
-  fontSizeTop: Number,
-  fontSizeBottom: Number,
-  isBoldTop: Boolean,
-  isBoldBottom: Boolean,
+  content: String,
 });
 
-const img = computed(() => props.imageUrl);
-
-const textTopStyles = computed(() => {
-  return {
-    color: props.textColorTop,
-    fontSize: `${props.fontSizeTop}px`,
-    fontWeight: props.isBoldTop ? "bold" : "normal",
-    textAlign: "left",
-  };
+const renderedContent = computed(() => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = props.content;
+  let match;
+  while ((match = regex.exec(props.content)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), { throwOnError: false });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
 });
 
-const textBottomStyles = computed(() => {
-  return {
-    color: props.textColorBottom,
-    fontSize: `${props.fontSizeBottom}px`,
-    fontWeight: props.isBoldBottom ? "bold" : "normal",
-    textAlign: "left",
-  };
-});
-
-const titleStyles = {
-  color: props.titleColor,
-  fontSize: `${props.titleFontSize}px`,
-  textAlign: "left",
-};
 </script>
 
 <style scoped>
 .content-with-image {
-  text-align: center;
-}
-
-.content-image {
-  width: 200px;
-  height: 200px;
-}
-
-.text-top {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.image {
-  margin: 20px 0;
-  max-width: "100%";
-}
-
-.text-bottom {
-  font-size: 18px;
+  color: #000;
+  margin-top: 32px;
 }
 </style>

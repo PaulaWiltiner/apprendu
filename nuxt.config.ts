@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     },
   },
   css: [
+    "katex/dist/katex.min.css",
     `assets/styles/main.scss`,
     `assets/styles/helpers.scss`,
     `assets/styles/components.scss`,

@@ -32,7 +32,7 @@ const goBack = () => {
 
 setTimeout(function () {
   isEmail.value = true;
-}, 4000);
+}, 6500);
 </script>
 
 <style scoped>

@@ -154,10 +154,12 @@ const cardsThree = ref<Card[]>([
 .text1 {
   font-size: 14px;
   width: 130px;
+  color: #fff;
 }
 
 .text {
   font-size: 14px;
+  color: #fff;
 }
 
 .cardsLeft {

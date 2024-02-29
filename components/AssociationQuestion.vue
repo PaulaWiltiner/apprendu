@@ -217,6 +217,7 @@ watch(connectedPairs.value, (newArray) => {
   font-size: 13px;
   text-align: center;
   width: 60px;
+  color: #fff;
 }
 
 .elastic-line {
