@@ -315,35 +315,35 @@ const isScore = ref(false);
 
 const items = reactive([
   {
-    value1: "/img/android.svg",
-    value2: "android",
+    value1:  String.raw`$$ \text{25\%} $$`,
+    value2: String.raw`$$ \dfrac {50}{100} $$`,
   },
   {
-    value1: "/img/apple.png",
-    value2: "apple",
+    value1: String.raw`$$ \text{50\%} $$`,
+    value2: String.raw`$$ \dfrac {3}{100} $$`,
   },
   {
-    value1: "/img/mcdonalds.png",
-    value2: "mcdonalds",
+    value1: String.raw`$$ \text{3\%} $$`,
+    value2: String.raw`$$ \dfrac {25}{100} $$`,
   },
   {
-    value1: "/img/google.png",
-    value2: "google",
+    value1: String.raw`$$ \text{100\%} $$`,
+    value2: String.raw`$$ \dfrac {100}{100} $$`,
   },
 ]);
 
 const correctMatch = ref([
   {
     leftCardIndex: 0,
-    rightCardIndex: 0,
+    rightCardIndex: 2,
   },
   {
     leftCardIndex: 1,
-    rightCardIndex: 1,
+    rightCardIndex: 0,
   },
   {
     leftCardIndex: 2,
-    rightCardIndex: 2,
+    rightCardIndex: 1,
   },
   {
     leftCardIndex: 3,
@@ -352,21 +352,7 @@ const correctMatch = ref([
 ]);
 
 const questions = reactive([
-  {
-    type: OrderQuestion,
-    name: "OrderQuestion",
-    props: {
-      questionText: "Ordene corretamente na vertical",
-      correctAnswer: correctOrder.value,
-      options: order.value,
-      background: "linear-gradient(45deg, #c3a5c2, #7ec4cf)",
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 2,
-    userAnswer: null,
-  },
-  {
+{
     isAssociationQuestion: true,
     type: AssociationQuestion,
     name: "AssociationQuestion",
@@ -384,13 +370,42 @@ const questions = reactive([
           transformOrigin: "0% 0%",
         },
       })),
-      questionText: "Ligue os pontos corretamente",
+      questionText: "Associe as formas percentuais com as formas fracionárias.",
       correctAnswer: correctMatch.value,
       background: "#9f98ba",
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
     weight: 1,
+    userAnswer: null,
+    tip: 'Erros são oportunidades de aprendizado, continue tentando, você está progredindo! Tente se lembrar da tabela das formas percentual, fracionária e decimal.',
+    curiosity: 'Continue se dedicando para alcançar os seus sonhos!',
+  },
+{
+    type: MultipleChoice,
+    name: "MultipleChoice",
+    props: {
+      question: "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu?",
+      options: [String.raw`$$ \frac {\text{Número de pedaços comidos pelo Gabriel } \times\ 100 }{100} \to \frac {4 \times\ 100}{100} = \text{4\%} $$`],
+      correctAnswer: String.raw`$$ \frac {\text{Número de pedaços comidos pelo Gabriel } \times\ 100 }{100} \to \frac {4 \times\ 100}{100} = \text{4\%} $$`,
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 8,
+    userAnswer: null,
+  },
+  {
+    type: OrderQuestion,
+    name: "OrderQuestion",
+    props: {
+      questionText: "Ordene corretamente na vertical",
+      correctAnswer: correctOrder.value,
+      options: order.value,
+      background: "linear-gradient(45deg, #c3a5c2, #7ec4cf)",
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 2,
     userAnswer: null,
   },
   {
@@ -420,19 +435,6 @@ const questions = reactive([
     isCorrect: false,
     userAnswerIsCorrect: true,
     weight: 5,
-    userAnswer: null,
-  },
-  {
-    type: MultipleChoice,
-    name: "MultipleChoice",
-    props: {
-      question: "Qual é a capital do Brasil?",
-      options: ["Rio de Janeiro", "Brasília", "São Paulo", "Salvador"],
-      correctAnswer: "Brasília",
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 8,
     userAnswer: null,
   },
   {
@@ -482,24 +484,24 @@ async function handleAnswer() {
       }
     );
   }
-  const prompt = generatePrompt(
-    questionText,
-    _correctAnswer,
-    questions[currentQuestionIndex.value].userAnswer,
-    _options
-  );
+  // const prompt = generatePrompt(
+  //   questionText,
+  //   _correctAnswer,
+  //   questions[currentQuestionIndex.value].userAnswer,
+  //   _options
+  // );
 
-  const text: string = await getAI(prompt);
+  // const text: string = await getAI(prompt);
   if (questions[currentQuestionIndex.value].isCorrect) {
     alert.title = "Parabéns!!";
-    alert.text = text ?? "";
+    alert.text = questions[currentQuestionIndex.value].curiosity ?? "";
     alert.isSuccess = true;
     active.value = true;
     loading.value = false;
   } else {
     questions[currentQuestionIndex.value].userAnswerIsCorrect = false;
     alert.title = "Não foi dessa vez.";
-    alert.text = text ?? "";
+    alert.text = questions[currentQuestionIndex.value].tip ?? "";
     alert.isSuccess = false;
     active.value = true;
     loading.value = false;

@@ -10,7 +10,7 @@
         :class="{ 'btn-clicked': selectedOption === option }"
         @click="selectOption(option)"
       >
-        {{ option }}
+        <div v-html="renderedContent(option)" />
       </button>
     </div>
   </div>
@@ -18,6 +18,9 @@
 
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
+
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
 const props = defineProps({
   question: String,
@@ -28,6 +31,20 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
+
+const renderedContent = (value) => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = value;
+  let match;
+  while ((match = regex.exec(value)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), {
+      throwOnError: false,
+    });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
+};
 
 const selectedOption = ref("");
 

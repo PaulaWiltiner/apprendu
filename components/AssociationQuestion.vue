@@ -10,7 +10,9 @@
         @touchend="stopStretching(index)"
         @touchmove="(event) => stretchLine(index, event)"
       >
-        <p v-if="item.text1" class="card-text text">{{ item.text1 }}</p>
+        <p v-if="item.value1" class="card-text text">
+          <div v-html="renderedContent(item.value1)" />
+        </p>
         <img v-if="item.img1" :src="item.img1" class="card-image" />
       </button>
 
@@ -23,7 +25,9 @@
         class="btn btn-right rounded-3 shadow format"
         ref="rightButton"
       >
-        <p v-if="item.text2" class="card-text text">{{ item.text2 }}</p>
+        <p v-if="item.value2" class="card-text text">
+          <div v-html="renderedContent(item.value2)" />
+        </p>
         <img v-if="item.img2" :src="item.img2" class="card-image" />
       </button>
     </div>
@@ -32,6 +36,8 @@
 
 <script setup>
 import { ref } from "vue";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
 const props = defineProps({
   correctAnswer: Array,
@@ -41,6 +47,20 @@ const props = defineProps({
   background: String,
   userAnswer: Array,
 });
+
+const renderedContent = (value) => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = value;
+  let match;
+  while ((match = regex.exec(value)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), {
+      throwOnError: false,
+    });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
+};
 
 const rightButton = ref();
 
@@ -152,11 +172,12 @@ watch(connectedPairs.value, (newArray) => {
   const isCorrect =
     newArray.every((element) => {
       const correct = props.correctAnswer.find(
-        (item) => item.leftCardIndex === element.rightCardIndex
+        (item) => item.leftCardIndex === element.leftCardIndex
       );
 
       return element.rightCardIndex === correct.rightCardIndex;
     }) && newArray.length === props.correctAnswer.length;
+    console.log(isCorrect, 'isCorrect')
   emits("update:isCorrect", isCorrect);
   emits(
     "update:userAnswer",
