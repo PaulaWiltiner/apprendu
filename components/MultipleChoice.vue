@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h2 class="title mb-4">{{ question }}</h2>
+    <h3 v-if="props.question" class="title mb-4">
+      <div v-html="renderedContent(question)" />
+    </h3>
+    <div class="question-container">
+      <div v-html="renderedContent(questionText)" />
+    </div>
     <div class="d-flex flex-column align-items-start gap-2">
       <button
         v-for="(option, index) in options"
@@ -10,7 +15,7 @@
         :class="{ 'btn-clicked': selectedOption === option }"
         @click="selectOption(option)"
       >
-        <div v-html="renderedContent(option)" />
+        <div class="center" v-html="renderedContent(option)" />
       </button>
     </div>
   </div>
@@ -24,6 +29,7 @@ import "katex/dist/katex.min.css";
 
 const props = defineProps({
   question: String,
+  questionText: String,
   options: Array,
   correctAnswer: String,
   isCorrect: Boolean,
@@ -66,11 +72,24 @@ function checkAnswer() {
   font-size: 18px;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.question-container {
+  margin-top: 20px;
+  color: black;
+}
+
 .btn {
   margin-bottom: 10px;
   width: 100%;
   text-align: left;
   border: 1px solid #3f5982;
+  font-size: 12px;
 }
 
 .btn-clicked {

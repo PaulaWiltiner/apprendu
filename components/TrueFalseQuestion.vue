@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="title mb-5">{{ question }}</h2>
+    <h2 class="title mb-5"><div v-html="renderedContent(question)" /></h2>
     <div class="card-container">
       <Card
         width="100%"
@@ -9,7 +9,7 @@
         color="white"
         :shadow="false"
       >
-        {{ questionText }}
+        <div v-html="renderedContent(questionText)" />
       </Card>
       <div class="btn-group mt-2" role="group">
         <button
@@ -36,6 +36,9 @@
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
 
+import katex from "katex";
+import "katex/dist/katex.min.css";
+
 const props = defineProps({
   questionText: String,
   question: String,
@@ -43,6 +46,20 @@ const props = defineProps({
   isCorrect: Boolean,
   userAnswer: String,
 });
+
+const renderedContent = (value) => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = value;
+  let match;
+  while ((match = regex.exec(value)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), {
+      throwOnError: false,
+    });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
+};
 
 const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 

@@ -1,5 +1,5 @@
 <template>
-  <h2 class="title">{{ props.questionText }}</h2>
+  <h3 class="title"><div v-html="renderedContent(questionText)" /></h3>
   <draggable v-model="items" tag="ul" class="draggable" item-key="meal">
     <template #item="{ element: option }">
       <Card
@@ -12,7 +12,7 @@
         :padding-top="card.paddingTop"
         center
       >
-        <p class="card-text text">{{ option }}</p>
+        <p class="card-text text"><div v-html="renderedContent(option)" /></p>
       </Card>
     </template>
   </draggable>
@@ -21,6 +21,8 @@
 <script setup>
 import { ref } from "vue";
 import draggable from "vuedraggable";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
 const props = defineProps({
   correctAnswer: Array, // Recebe a ordem correta dos itens
@@ -30,6 +32,20 @@ const props = defineProps({
   background: String,
   userAnswer: Array,
 });
+
+const renderedContent = (value) => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = value;
+  let match;
+  while ((match = regex.exec(value)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), {
+      throwOnError: false,
+    });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
+};
 
 const card = ref({
   width: "100%",

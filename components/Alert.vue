@@ -3,7 +3,7 @@
     <div v-if="active" :class="alertClass">
       <div class="custom-alert" :class="alertClass">
         <strong :class="isSuccess ? 'title' : 'errorTitle'">{{ title }}</strong>
-        <p class="text">{{ text }}</p>
+        <p class="text"> <div v-html="renderedContent(text)" /></p>
         <hr />
         <div :class="isSuccess ? 'right' : 'space-between'">
           <button v-if="!isSuccess" class="btn btn-danger" @click="retry">
@@ -23,6 +23,8 @@
 
 <script setup>
 import { defineProps } from "vue";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
 const props = defineProps({
   title: String,
@@ -39,6 +41,20 @@ const props = defineProps({
     default: false,
   },
 });
+
+const renderedContent = (value) => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = value;
+  let match;
+  while ((match = regex.exec(value)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), {
+      throwOnError: false,
+    });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
+};
 
 const alertClass = computed(() =>
   props.isSuccess

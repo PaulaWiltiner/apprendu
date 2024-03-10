@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="title">{{ props.questionText }}</h2>
+    <h3 class="title"><div v-html="renderedContent(props.questionText)"></div></h3>
 
     <div class="d-flex wid" v-for="(item, index) in props.options" :key="index">
       <button

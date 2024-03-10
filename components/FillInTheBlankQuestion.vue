@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2 class="title">{{ question }}</h2>
+    <h2 v-if="props.question" class="title">{{ question }}</h2>
     <div class="question-container">
-      {{ questionText }}
+      <div v-html="renderedContent(questionText)" />
       <div v-if="answerType === 'text'" class="mt-4">
         <select
           v-model="userAnswer"
@@ -16,7 +16,7 @@
             :key="index"
             :value="option"
           >
-            {{ option }}
+            <div v-html="renderedContent(option)" />
           </option>
         </select>
       </div>
@@ -35,6 +35,8 @@
 
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
 const props = defineProps({
   question: String,
@@ -48,6 +50,20 @@ const props = defineProps({
   },
   userAnswer: String,
 });
+
+const renderedContent = (value) => {
+  const regex = /\$\$(.*?)\$\$/g; // Expressão regular para capturar o conteúdo entre $$
+  let replacedContent = value;
+  let match;
+  while ((match = regex.exec(value)) !== null) {
+    const formula = match[1];
+    const renderedFormula = katex.renderToString(formula.trim(), {
+      throwOnError: false,
+    });
+    replacedContent = replacedContent.replace(match[0], renderedFormula);
+  }
+  return replacedContent;
+};
 
 const emits = defineEmits(["update:isCorrect", "update:userAnswer"]);
 
