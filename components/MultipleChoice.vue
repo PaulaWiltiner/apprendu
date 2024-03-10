@@ -68,7 +68,7 @@ function checkAnswer() {
 
 <style scoped>
 .title {
-  color: black;
+  color: #f39c76;
   font-size: 18px;
 }
 

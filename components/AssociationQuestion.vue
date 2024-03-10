@@ -225,11 +225,20 @@ watch(connectedPairs.value, (newArray) => {
   width: 20%;
   padding: 10px;
   background: #735096;
+  color: #fff;
 }
+
+.btn-purple:active {
+  width: 20%;
+  padding: 10px;
+  color: #735096;
+}
+
 .btn-right {
   padding: 10px;
   height: 100%;
   background: #735096;
+  color: #fff;
 }
 .btn-blue {
   background: linear-gradient(45deg, #3f5982, #7ec4cf);
@@ -238,7 +247,6 @@ watch(connectedPairs.value, (newArray) => {
   font-size: 13px;
   text-align: center;
   width: 60px;
-  color: #fff;
 }
 
 .elastic-line {

@@ -391,15 +391,15 @@ const questions = reactive([
     type: MultipleChoice,
     name: "Multipla Escolha - Pizza",
     props: {
-      question:
-        "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu?",
+      questionText:
+        "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu? <p>&nbsp;</p>",
       options: [
         String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel } \times\ 100 }{100} = \dfrac {4 \times\ 100}{100} = \text{4\%} $$`,
         String.raw`$$ \left( \dfrac {\text{Nº de pedaços de pizza}}{\text{Nº de pedaços comidos pelo Gabriel}} \right) \times\ 100 = \left(\dfrac {8}{4} \right) \times\ 100 = \text{200\%} $$`,
         String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
         String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}}= \dfrac {4}{8} = \text{0,5} $$`,
       ],
-      correctAnswer: String.raw`$$ \left( \frac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\frac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
+      correctAnswer: String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
@@ -424,7 +424,7 @@ const questions = reactive([
         String.raw`$$ \text{Investimento inicial} = 30\% \text { de } 1000 = \left(\dfrac {0,3}{100}\right) \times\ 1000 $$`,
         String.raw`$$ \text{Investimento inicial} = 30\% \text { de } 1000 = 30 \times\ 1000 $$`,
       ],
-      correctAnswer: String.raw`$$ \text{Investimento inicial} = 30\% \text { de } 1000 = \left(\frac {30}{100}\right) \times\ 1000 $$`,
+      correctAnswer: String.raw`$$ \text{Investimento inicial} = 30\% \text { de } 1000 = \left(\dfrac {30}{100}\right) \times\ 1000 $$`,
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
@@ -443,7 +443,7 @@ const questions = reactive([
 
       <p>&Oacute;timo! Agora que encontramos a express&atilde;o correta para resolver este problema, precisamos encontrar o resultado final.</p>
 
-      <p>$$ \text{Investimento inicial} = 30\% \text { de } 1000 = \left(\dfrac {30}{100}\right) \times\ 1000 = \text ? $$</p>
+      <p style="color:#4e5f70">$$ \text{Investimento inicial} = 30\% \text { de } 1000 = \left(\dfrac {30}{100}\right) \times\ 1000 = \text ? $$</p>
 
       <p style="color:#678ac9">Obs: Use uma calculadora se achar necess&aacute;rio.</p>`,
       answerType: "number",
@@ -477,7 +477,7 @@ const questions = reactive([
         String.raw`$$ 20\% \text{ de }\ 100.000 = 20\times\ 100 = 2000 $$`,
         String.raw`$$ 20\% \text{ de }\ 100.000 = \left(\dfrac {20}{100}\right) \times 100.000 = 20.000 $$`,
       ],
-      correctAnswer: String.raw`$$ 20\% \text{ de }\ 100.000 = \left(\frac {20}{100}\right) \times 100.000 = 20.000 $$`,
+      correctAnswer: String.raw`$$ 20\% \text{ de }\ 100.000 = \left(\dfrac {20}{100}\right) \times 100.000 = 20.000 $$`,
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
@@ -718,7 +718,7 @@ const questions = reactive([
         String.raw`$$ 3,5 + 20\% \text{ de }\ 3,5 = 3,5 + \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 + 0,7 = 4,2 $$`,
         String.raw`$$ 20\% \text{ de }\ 3,5 = \left(\dfrac {20}{100}\right) \times 3,5 = 0,7 $$`,
       ],
-      correctAnswer: `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e subtrair este valor obtido de 3.500.000 litros.`,
+      correctAnswer: String.raw`$$ 3,5 - 20\% \text{ de }\ 3,5 = 3,5 - \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 - 0,7 = 2,8 $$`,
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
