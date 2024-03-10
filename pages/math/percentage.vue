@@ -252,6 +252,10 @@ const contents = reactive([
 ]);
 
 function nextContent() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Para uma animação suave, se suportado
+  });
   if (currentContentIndex.value === contents.length - 1) {
     isContent.value = false;
   }
@@ -261,6 +265,10 @@ function nextContent() {
 }
 
 function previousContent() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Para uma animação suave, se suportado
+  });
   if (currentContentIndex.value > 0) {
     currentContentIndex.value--;
   }
@@ -288,6 +296,10 @@ function generatePrompt(
 }
 
 async function nextAlert() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Para uma animação suave, se suportado
+  });
   if (questions[currentQuestionIndex.value].userAnswerIsCorrect) {
     correctQuestions.value.push(currentQuestionIndex.value);
   }
