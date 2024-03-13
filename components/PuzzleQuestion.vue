@@ -195,7 +195,7 @@ const handleFilledSpaceClick = (index) => {
   )[index];
   if (spaceValue !== null) {
     const clickedOption = props.options.find(
-      (option) => option.text === spaceValue
+      (option) => option.text === spaceValue && option.clicked
     );
     if (clickedOption) {
       clickedOption.clicked = false;
