@@ -246,7 +246,7 @@ const contents = reactive([
 	<li>A pizza tinha um total de 8 peda&ccedil;os</li>
 </ul>
 
-<p>Com essas informações, podemos determinar quantos pedaços de pizza foram comidos por Gabriel, valor que chamaremos de X. O cálculo é o seguinte: <span style="color:#f39c12">(&eacute; a an&aacute;lise inversa &agrave; que tivemos antes)</span>:</p>
+<p>Com essas informações, podemos determinar quantos pedaços de pizza foram comidos por Gabriel, valor que chamaremos de X. O cálculo é o seguinte:</p>
 
 <p>$$ \text{X} = \text{50\% de 8} =\left(\dfrac {50}{100}\right) \times\ 8 = \text{4 pedaços} $$</p>
 
@@ -455,9 +455,9 @@ const questions = reactive([
   },
   {
     type: MultipleChoice,
-    name: "Multipla Escolha - Salário - Parte 1",
+    name: "Multipla Escolha - Finanças - Parte1",
     props: {
-      question: "Salário - 1",
+      question: "Finanças - Parte 1",
       questionText: `<p>Se uma pessoa investe mensalmente 30% de seu sal&aacute;rio de R$ 1.000,00, quantos reais s&atilde;o investidos por m&ecirc;s?</p>
 
         <p style="color:#9266be">Vamos resolver esta quest&atilde;o por partes&hellip;</p>
@@ -481,9 +481,9 @@ const questions = reactive([
   },
   {
     type: FillInTheBlankQuestion,
-    name: "Preencha o espaço em branco - Salário - Parte 2",
+    name: "Preencha o espaço em branco - Finanças - Parte2",
     props: {
-      question: "Salário - 2",
+      question: "Finanças - Parte 2",
       questionText: String.raw`<p>Se uma pessoa investe mensalmente 30% de seu sal&aacute;rio de R$ 1.000,00, quantos reais s&atilde;o armazenados por m&ecirc;s?</p>
 
       <p>&Oacute;timo! Agora que encontramos a express&atilde;o correta para resolver este problema, precisamos encontrar o resultado final.</p>
@@ -505,7 +505,7 @@ const questions = reactive([
     type: MultipleChoice,
     name: "Multipla Escolha - Preço da Casa - Parte 1",
     props: {
-      question: "Preço da Casa - 1",
+      question: "Comprando um imóvel - Parte 1",
       questionText: `<p>O pre&ccedil;o m&eacute;dio das casas de um bairro &eacute; R$ 100.000,00 (cem mil reais). Se uma certa casa est&aacute; com o pre&ccedil;o de venda 20% maior que a m&eacute;dia do bairro, qual &eacute; o pre&ccedil;o desta casa?</p>
 
       <p>Vamos resolver esta quest&atilde;o por partes&hellip;</p>
@@ -536,7 +536,7 @@ const questions = reactive([
     type: MultipleChoice,
     name: "Multipla Escolha - Preço da Casa - Parte 2",
     props: {
-      question: "Preço da Casa - 2",
+      question: "Comprando um imóvel - Parte 2",
       questionText: `<p>O preço médio das casas de um bairro é R$ 100.000,00. Se uma certa casa está com o preço de venda 20% maior que a média do bairro, qual é o preço desta casa?</p>
 
       <p style="color:#9266be">Muito bem! Como esta casa é R$ 20.000,00 mais cara do que a média das casas do bairro, só resta calcularmos o preço dela.</p>
@@ -560,9 +560,9 @@ const questions = reactive([
   },
   {
     type: MultipleChoice,
-    name: "Pisa - Fábricas - Parte 1",
+    name: "Pisa - Celulares - Parte 1",
     props: {
-      question: "Questão do PISA (adaptada) - 1",
+      question: "Escolhendo um celular - Parte 1",
       questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
 
       <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
@@ -610,9 +610,9 @@ const questions = reactive([
   },
   {
     type: MultipleChoice,
-    name: "Pisa - Fábricas - Parte 2",
+    name: "Pisa - Celulares - Parte 2",
     props: {
-      question: "Questão do PISA (adaptada) - 2",
+      question: "Escolhendo um celular - Parte 2",
       questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
 
       <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
@@ -662,9 +662,9 @@ const questions = reactive([
   },
   {
     type: MultipleChoice,
-    name: "Pisa - Fábricas - Parte 3",
+    name: "Pisa - Celulares - Parte 3",
     props: {
-      question: "Questão do PISA (adaptada) - 3",
+      question: "Escolhendo um celular - Parte 3",
       questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
 
       <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
@@ -714,9 +714,9 @@ const questions = reactive([
   },
   {
     type: MultipleChoice,
-    name: "Pisa - óleo diesel - Parte 1",
+    name: "Pisa - combustível - Parte 1",
     props: {
-      question: "Questão do PISA (adaptada) - 1",
+      question: "Economizando combustível - Parte1",
       questionText: `<p>Devido ao alto custo de &oacute;leo diesel, os propriet&aacute;rios do navio Nova Onda est&atilde;o pensando em equipar seu navio com uma <em>kite sail</em>, uma esp&eacute;cie de vela que auxilia o deslocamento do navio pela for&ccedil;a do vento. Calcula-se que uma <em>kite sail</em> tenha o potencial para reduzir o consumo de diesel em cerca de 20%.</p>
 
       <img src="/img/new_wave.png" style="height:auto; width:100%" /></td>
@@ -743,9 +743,9 @@ const questions = reactive([
   },
   {
     type: MultipleChoice,
-    name: "Pisa - óleo diesel - Parte 2",
+    name: "Pisa - combustível - Parte 2",
     props: {
-      question: "Questão do PISA (adaptada) - 2",
+      question: "Economizando combustível - Parte2",
       questionText: `<p>Devido ao alto custo de &oacute;leo diesel, os propriet&aacute;rios do navio Nova Onda est&atilde;o pensando em equipar seu navio com uma <em>kite sail</em>, uma esp&eacute;cie de vela que auxilia o deslocamento do navio pela for&ccedil;a do vento. Calcula-se que uma <em>kite sail</em> tenha o potencial para reduzir o consumo de diesel em cerca de 20%.</p>
 
       <img src="/img/new_wave.png" style="height:auto; width:100%" /></td>
