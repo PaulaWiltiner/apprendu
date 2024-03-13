@@ -55,7 +55,7 @@ async function sendEmails() {
 .container {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #f39c76, #e5b9a8);
+  background: linear-gradient(45deg, #9266be, #c9bcf6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +64,7 @@ async function sendEmails() {
 }
 
 .bg-gradient {
-  background: linear-gradient(45deg, #f39c76, #e5b9a8);
+  background: linear-gradient(45deg, #9266be, #cabdf9);
   padding: 20px 0;
   color: #fff;
 }

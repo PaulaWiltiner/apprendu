@@ -53,8 +53,20 @@ export function useAPI() {
     }
   }
 
+  async function sendForm(form: Record<string, string>) {
+    const db = getFirestore(app);
+
+    try {
+      await addDoc(collection(db, "forms"), form);
+      console.log("Formulário enviado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao enviar as respostas:", error);
+    }
+  }
+
   return {
     sendAnswers,
     sendEmail,
+    sendForm
   };
 }

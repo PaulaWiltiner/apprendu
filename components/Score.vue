@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isEmail" class="score-container" :style="{ background }">
+  <div v-if="!hasForm" class="score-container" :style="{ background }">
     <div class="score-content">
       <h1 class="score-title">Pontuação Final</h1>
       <div class="score-value">{{ score }} XP</div>
@@ -12,11 +12,11 @@
       <Button @click="goBack" back>Voltar para o módulo</Button>
     </div>
   </div>
-  <Email v-else />
+  <Form v-else />
 </template>
 
 <script setup>
-import Email from "@/components/Email.vue";
+import Form from "@/components/Form.vue";
 
 const props = defineProps({
   background: String,
@@ -24,14 +24,14 @@ const props = defineProps({
   route: String,
 });
 
-const isEmail = ref(false);
+const hasForm = ref(false);
 
 const goBack = () => {
-  isEmail.value = true;
+  hasForm.value = true;
 };
 
 setTimeout(function () {
-  isEmail.value = true;
+  hasForm.value = true;
 }, 6200);
 </script>
 
