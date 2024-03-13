@@ -28,6 +28,7 @@
     "@nuxt/devtools": "latest",
     "@types/express": "^4.17.17",
     "@types/katex": "^0.16.7",
+    "@types/lodash": "^4.17.0",
     "@types/node": "^18.17.0",
     "@vite-pwa/nuxt": "^0.4.0",
     "nuxt": "^3.9.1",

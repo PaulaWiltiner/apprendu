@@ -59,6 +59,8 @@ import OrderQuestion from "~/components/OrderQuestion.vue";
 import AssociationQuestion from "@/components/AssociationQuestion.vue";
 import FillInTheBlankQuestion from "@/components/FillInTheBlankQuestion.vue";
 import MultipleChoice from "@/components/MultipleChoice.vue";
+import PuzzleQuestion from "@/components/PuzzleQuestion.vue";
+
 import TrueFalseQuestion from "@/components/TrueFalseQuestion.vue";
 import { useAI } from "@/composables/AIExplanation";
 import { useAPI } from "@/composables/API";
@@ -400,18 +402,49 @@ const questions = reactive([
     curiosity: "Continue se dedicando para alcançar os seus sonhos!",
   },
   {
-    type: MultipleChoice,
-    name: "Multipla Escolha - Pizza",
+    type: PuzzleQuestion,
+    name: "Quebra-cabeça - Porcentagem",
     props: {
+      options: [
+        {
+          text: "Nº de pedaços de pizza",
+          width: "auto",
+          height: "40px",
+          clicked: true,
+        },
+        { text: "8", width: "auto", height: "40px" },
+        { text: "10", width: "auto", height: "40px" },
+        { text: "4", width: "auto", height: "40px" },
+        { text: "100", width: "auto", height: "40px" },
+        { text: "50%", width: "auto", height: "40px" },
+        { text: "40%", width: "auto", height: "40px" },
+        { text: "100", width: "auto", height: "40px" },
+        {
+          text: "Nº de pedaços comidos pelo Gabriel",
+          width: "auto",
+          height: "40px",
+          clicked: true,
+        },
+      ],
       questionText:
         "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu? <p>&nbsp;</p>",
-      options: [
-        String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel } \times\ 100 }{100} = \dfrac {4 \times\ 100}{100} = \text{4\%} $$`,
-        String.raw`$$ \left( \dfrac {\text{Nº de pedaços de pizza}}{\text{Nº de pedaços comidos pelo Gabriel}} \right) \times\ 100 = \left(\dfrac {8}{4} \right) \times\ 100 = \text{200\%} $$`,
-        String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
-        String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}}= \dfrac {4}{8} = \text{0,5} $$`,
-      ],
-      correctAnswer: String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
+      correctAnswer: {
+        fristFraction: [
+          "Nº de pedaços comidos pelo Gabriel",
+          "Nº de pedaços de pizza",
+        ],
+        fristMultiplier: ["100"],
+        secondFraction: ["4", "8"],
+        secondMultiplier: ["100"],
+        result: ["50%"],
+      },
+      userAnswer: {
+        fristFraction: [null, null],
+        fristMultiplier: [null],
+        secondFraction: [null, null],
+        secondMultiplier: [null],
+        result: [null],
+      },
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
@@ -741,6 +774,28 @@ const questions = reactive([
       "O novo consumo é de 2.800.000 litros de diesel. O navio passa a economizar 700 mil litros de combustível.",
   },
 ]);
+
+// {
+//     type: MultipleChoice,
+//     name: "Multipla Escolha - Pizza",
+//     props: {
+//       questionText:
+//         "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu? <p>&nbsp;</p>",
+//       options: [
+//         String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel } \times\ 100 }{100} = \dfrac {4 \times\ 100}{100} = \text{4\%} $$`,
+//         String.raw`$$ \left( \dfrac {\text{Nº de pedaços de pizza}}{\text{Nº de pedaços comidos pelo Gabriel}} \right) \times\ 100 = \left(\dfrac {8}{4} \right) \times\ 100 = \text{200\%} $$`,
+//         String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
+//         String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}}= \dfrac {4}{8} = \text{0,5} $$`,
+//       ],
+//       correctAnswer: String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
+//     },
+//     isCorrect: false,
+//     userAnswerIsCorrect: true,
+//     weight: 2,
+//     userAnswer: null,
+//     tip: String.raw`Lembre-se de dividir a PARTE pelo TODO, e multiplicar o resultado desta divisão por 100. $$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ 100 $$`,
+//     curiosity: "Continue se dedicando para alcançar os seus sonhos!",
+//   },
 
 // {
 //     type: OrderQuestion,
