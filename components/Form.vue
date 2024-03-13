@@ -10,12 +10,12 @@
     <textarea
       v-model="resposta2"
       class="form-control"
-      placeholder="O que mais gostou no app?"
+      placeholder="O que mais gostou no app? E o que menos gostou?"
     ></textarea>
     <textarea
       v-model="resposta3"
       class="form-control"
-      placeholder="O que menos gostou no app? E do que sentiu falta?"
+      placeholder="Do que sentiu falta no app?"
     ></textarea>
 
     <div class="input-group-append">
