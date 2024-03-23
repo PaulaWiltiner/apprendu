@@ -182,13 +182,13 @@ const contents = reactive([
 
 <p>Para calcular uma porcentagem, basta dividir a <strong>PARTE</strong> pelo <strong>TODO</strong> e <strong>multiplicar por 100</strong>.</p>
 
-<p style="text-align:center"><span style="color:#9266be">$$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ (100) $$</span></p>
+<p style="text-align:center"><span style="color:#9266be;font-size:15px">$$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ (100) $$</span></p>
 
 <p><span style="color:#4e5f70"><strong>Relembrando o exemplo da loja de camisetas&hellip;</strong></span></p>
 
 <p>Se uma loja possui 100 camisetas e 60 s&atilde;o brancas, para calcularmos a porcentagem de camisetas brancas desta loja, vamos utilizar a f&oacute;rmula:</p>
 
-<p style="text-align:center"><span style="color:#9266be">$$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ (100) $$</span></p>
+<p style="text-align:center"><span style="color:#9266be;font-size:15px">$$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ (100) $$</span></p>
 
 <table border="none" cellpadding="1" cellspacing="1" style="border:none; width:100%">
 	<tbody>
@@ -208,11 +208,21 @@ const contents = reactive([
 
 <p>Portanto:</p>
 
-<p>$$ \text{\%\ de camisetas brancas} =\left(\dfrac {Parte}{Todo}\right) \times\ 100  $$</p>
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:13px;width:100%;align-items:center;white-space:nowrap"> 
+  <p >$$ \text{\%\ de camisetas brancas} = $$</p>
+  <p >$$ \left(\dfrac {Parte}{Todo}\right) \times\ 100  $$</p>
+</div>
 
 <p>E, trocando os valores, vamos obter:</p>
 
-<p>$$ \left(\dfrac {\text{Nº camisetas brancas}}{\text{Nº total de camisetas}}\right) \times\ 100  =\left(\dfrac {60}{100}\right) \times\ 100 = \text{60\%}  $$</p>
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:13px;width:100%;align-items:center;white-space:nowrap;"> 
+
+  <p >$$ \left(\dfrac {\text{Nº camisetas brancas}}{\text{Nº total de camisetas}}\right) \times\ 100  = $$</p>
+  <p >$$ \left(\dfrac {60}{100}\right) \times\ 100  = $$</p>
+  <p >$$ \text{ 60\%}  $$</p>
+
+  
+</div>
 
 <p>Portanto, a porcentagem de camisetas brancas &eacute; <span style="color:#f39c12"><span style="font-size:14px"><strong>60%</strong></span></span><span style="color:#678ac9"><span style="font-size:14px">.</span></span></p>
 
@@ -248,7 +258,11 @@ const contents = reactive([
 
 <p>Com essas informações, podemos determinar quantos pedaços de pizza foram comidos por Gabriel, valor que chamaremos de X. O cálculo é o seguinte:</p>
 
-<p>$$ \text{X} = \text{50\% de 8} =\left(\dfrac {50}{100}\right) \times\ 8 = \text{4 pedaços} $$</p>
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:14px;width:100%;align-items:center;white-space:nowrap"> 
+  <p>$$ \text{X} = \text{50\% de 8} = $$</p>
+  <p>$$ \left(\dfrac {50}{100}\right) \times\ 8 = $$</p>
+  <p>$$ \text{ 4 pedaços} $$</p>
+</div>
 
 `,
 ]);
@@ -569,22 +583,22 @@ const questions = reactive([
 
       <table border="1" style="border:1px solid gray; width:100%">
         <thead>
-          <tr>
-            <th style="text-align:center; width:137px"><span style="color:#4e5f70">Fabricante</span></th>
-            <th style="text-align:center; width:142px"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
-            <th style="text-align:center; width:137px"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
+          <tr style="border:1px solid gray">
+            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
+            <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
+            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align:center; width:137px"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px"><span style="color:#9266be"><strong>4000</strong></span></td>
-            <td style="text-align:center; width:137px"><span style="color:#9266be"><strong>3%</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
+            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
           </tr>
           <tr>
-            <td style="text-align:center; width:137px"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px"><strong><span style="color:#678ac9">9000</span></strong></td>
-            <td style="text-align:center; width:137px"><span style="color:#678ac9"><strong>5%</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
+            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
           </tr>
         </tbody>
       </table>
@@ -619,22 +633,22 @@ const questions = reactive([
 
       <table border="1" style="border:1px solid gray; width:100%">
         <thead>
-          <tr>
-            <th style="text-align:center; width:137px"><span style="color:#4e5f70">Fabricante</span></th>
-            <th style="text-align:center; width:142px"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
-            <th style="text-align:center; width:137px"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
+          <tr style="border:1px solid gray">
+            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
+            <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
+            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align:center; width:137px"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px"><span style="color:#9266be"><strong>4000</strong></span></td>
-            <td style="text-align:center; width:137px"><span style="color:#9266be"><strong>3%</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
+            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
           </tr>
           <tr>
-            <td style="text-align:center; width:137px"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px"><strong><span style="color:#678ac9">9000</span></strong></td>
-            <td style="text-align:center; width:137px"><span style="color:#678ac9"><strong>5%</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
+            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
           </tr>
         </tbody>
       </table>
@@ -671,22 +685,22 @@ const questions = reactive([
 
       <table border="1" style="border:1px solid gray; width:100%">
         <thead>
-          <tr>
-            <th style="text-align:center; width:137px"><span style="color:#4e5f70">Fabricante</span></th>
-            <th style="text-align:center; width:142px"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
-            <th style="text-align:center; width:137px"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
+          <tr style="border:1px solid gray">
+            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
+            <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
+            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align:center; width:137px"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px"><span style="color:#9266be"><strong>4000</strong></span></td>
-            <td style="text-align:center; width:137px"><span style="color:#9266be"><strong>3%</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
+            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
           </tr>
           <tr>
-            <td style="text-align:center; width:137px"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px"><strong><span style="color:#678ac9">9000</span></strong></td>
-            <td style="text-align:center; width:137px"><span style="color:#678ac9"><strong>5%</strong></span></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
+            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
+            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
           </tr>
         </tbody>
       </table>

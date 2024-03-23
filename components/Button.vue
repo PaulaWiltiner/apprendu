@@ -28,7 +28,7 @@ const handleClick = () => {
   <button
     v-if="confirm"
     type="button"
-    class="btn btn-lg rounded-5 w-75 btn-orange shadow-sm"
+    class="btn btn-lg rounded-5 btn-orange shadow-sm"
     @click="handleClick"
     :disabled="props.disabled"
   >
@@ -42,7 +42,7 @@ const handleClick = () => {
   <button
     v-if="next"
     type="button"
-    class="btn btn-lg rounded-5 w-0 btn-orange shadow-sm"
+    class="btn btn-lg rounded-5 btn-orange shadow-sm small-width"
     @click="handleClick"
   >
     <i class="bi bi-arrow-right icon-md"></i>
@@ -50,7 +50,7 @@ const handleClick = () => {
   <button
     v-if="previous"
     type="button"
-    class="btn btn-lg rounded-5 w-0 btn-orange shadow-sm"
+    class="btn btn-lg rounded-5 btn-orange shadow-sm small-width"
     @click="handleClick"
   >
     <i class="bi bi-arrow-left icon-md"></i>
@@ -78,6 +78,9 @@ const handleClick = () => {
 </template>
 
 <style lang="scss" scoped>
+.small-width {
+  width: 60px !important;
+}
 .icon-md {
   font-size: 20px; /* Ajuste o tamanho conforme necessário */
 }
@@ -85,6 +88,7 @@ const handleClick = () => {
   background: linear-gradient(45deg, #f39c76, #e5b9a8);
   color: white;
   font-size: 16px;
+  width: 100%;
 }
 .btn-purple {
   background: linear-gradient(45deg, #9266be, #bcb0e8);

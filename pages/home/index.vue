@@ -77,8 +77,8 @@ const cards = ref<Card[]>([
     text1: true,
   },
   {
-    width: "50%",
-    height: "120px",
+    width: "48%",
+    height: "100%",
     background: "linear-gradient(45deg, #678ac9, #7ec4cf)",
     shadow: true,
     title: "Matemática",
@@ -88,7 +88,7 @@ const cards = ref<Card[]>([
   },
   {
     width: "44%",
-    height: "120px",
+    height: "100%",
     background: "linear-gradient(45deg, #f39c76, #e5b9a8)",
     shadow: false,
     title: "Português",
@@ -101,7 +101,7 @@ const cards = ref<Card[]>([
 const cardsTwo = ref<Card[]>([
   {
     width: "100%",
-    height: "90px",
+    height: "100%",
     background: "linear-gradient(45deg, #ea8d5a, #f7ace4)",
     shadow: false,
     title: "Diversão",
@@ -111,7 +111,7 @@ const cardsTwo = ref<Card[]>([
   },
   {
     width: "100%",
-    height: "90px",
+    height: "100%",
     background: "linear-gradient(45deg, #9266be, #bcb0e8)",
     shadow: false,
     title: "Contexto",

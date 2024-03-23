@@ -11,26 +11,22 @@
       placeholder="Digite seu e-mail"
     />
     <div class="input-group-append">
-      <button
+      <Button
         @click="sendEmails"
-        class="btn btn-primary"
         :disabled="loading || !email"
+        :loading="loading"
+        confirm
       >
-        <div
-          v-if="loading"
-          class="spinner-border spinner-border-sm"
-          role="status"
-        ></div>
-        <div v-else>Enviar</div>
-      </button>
-      <button @click="sendEmails" class="btn btn-danger" :disabled="loading">
-        <div
-          v-if="loading"
-          class="spinner-border spinner-border-sm"
-          role="status"
-        ></div>
-        <div v-else>Não quero</div>
-      </button>
+        Enviar
+      </Button>
+      <Button
+        @click="sendEmails"
+        :disabled="loading"
+        :loading="loading"
+        confirm
+      >
+        Não quero
+      </Button>
     </div>
   </div>
 </template>
@@ -55,7 +51,6 @@ async function sendEmails() {
 .container {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #9266be, #c9bcf6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +59,6 @@ async function sendEmails() {
 }
 
 .bg-gradient {
-  background: linear-gradient(45deg, #9266be, #cabdf9);
   padding: 20px 0;
   color: #fff;
 }

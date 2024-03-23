@@ -19,7 +19,7 @@
 }
 
 .container__row {
-  gap: 22px;
+  gap: 16px;
   justify-content: space-between;
 }
 </style>

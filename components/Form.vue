@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div v-if="!hasEmail" class="container">
     <h2>Gostaríamos de ouvir sua opinião para melhorar o app Apprendu!</h2>
 
@@ -19,22 +20,12 @@
     ></textarea>
 
     <div class="input-group-append">
-      <button @click="send" class="btn btn-primary" :disabled="loading">
-        <div
-          v-if="loading"
-          class="spinner-border spinner-border-sm"
-          role="status"
-        ></div>
-        <div v-else>Enviar</div>
-      </button>
-      <button @click="send" class="btn btn-danger" :disabled="loading">
-        <div
-          v-if="loading"
-          class="spinner-border spinner-border-sm"
-          role="status"
-        ></div>
-        <div v-else>Não quero</div>
-      </button>
+      <Button @click="send" :disabled="loading" :loading="loading" confirm>
+        Enviar
+      </Button>
+      <Button @click="send" :disabled="loading" :loading="loading" confirm>
+        Não quero
+      </Button>
     </div>
   </div>
   <Email v-else />
@@ -68,8 +59,8 @@ async function send() {
 .container {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #f39c76, #e5b9a8);
   display: flex;
+  background: linear-gradient(45deg, #f39c76, #e5b9a8);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -77,7 +68,6 @@ async function send() {
 }
 
 .bg-gradient {
-  background: linear-gradient(45deg, #f39c76, #e5b9a8);
   padding: 20px 0;
   color: #fff;
 }

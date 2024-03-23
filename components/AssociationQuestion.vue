@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="question">
     <h3 class="title"><div v-html="renderedContent(props.questionText)"></div></h3>
 
     <div class="d-flex wid" v-for="(item, index) in props.options" :key="index">
       <button
         type="button"
         class="btn btn-purple rounded-3 shadow format"
-        @touchstart="(event) => startStretching(index, event)"
-        @touchend="stopStretching(index)"
-        @touchmove="(event) => stretchLine(index, event)"
+        @touchstart.prevent="(event) => startStretching(index, event)"
+        @touchend.prevent="stopStretching(index)"
+        @touchmove.prevent="(event) => stretchLine(index, event)"
       >
         <p v-if="item.value1" class="card-text text">
           <div v-html="renderedContent(item.value1)" />
@@ -197,6 +197,10 @@ watch(connectedPairs.value, (newArray) => {
 </script>
 
 <style scoped>
+.question {
+ width: auto;
+}
+
 .card-image {
   width: 40px;
   height: 40px;
