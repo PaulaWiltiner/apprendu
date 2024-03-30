@@ -5,18 +5,23 @@
 
     <textarea
       v-model="resposta1"
-      class="form-control"
-      placeholder="O que você achou dos conteúdos teóricos?"
+      class="form-control form-control--height"
+      placeholder="Como foi a experiência de estudar matemática por um aplicativo?"
     ></textarea>
     <textarea
       v-model="resposta2"
-      class="form-control"
-      placeholder="O que mais gostou no app? E o que menos gostou?"
+      class="form-control form-control--height"
+      placeholder="O que achou do conteúdo teórico? E o que achou das lições?"
     ></textarea>
     <textarea
       v-model="resposta3"
-      class="form-control"
-      placeholder="Do que sentiu falta no app?"
+      class="form-control form-control--height"
+      placeholder="O que você gostaria de ver em um aplicativo educação como este?"
+    ></textarea>
+    <textarea
+      v-model="resposta4"
+      class="form-control form-control--height"
+      placeholder="Pensando na sua jornada de aprendizado, em que momento um aplicativo como esse poderia te ajudar?"
     ></textarea>
 
     <div class="input-group-append">
@@ -40,15 +45,17 @@ const { sendForm } = useAPI();
 const resposta1 = ref(null);
 const resposta2 = ref(null);
 const resposta3 = ref(null);
+const resposta4 = ref(null);
 const loading = ref(false);
 const hasEmail = ref(false);
 
 async function send() {
   loading.value = true;
   await sendForm({
-    conteudo: resposta1.value,
-    app: resposta2.value,
-    faltou: resposta3.value,
+    experiencia: resposta1.value,
+    conteudo_licoes: resposta2.value,
+    gostaria_de_ver: resposta3.value,
+    momento_da_jornada: resposta4.value,
   });
   loading.value = false;
   hasEmail.value = true;
@@ -65,6 +72,12 @@ async function send() {
   align-items: center;
   justify-content: center;
   gap: 22px;
+  margin-top: 50px;
+}
+
+.form-control--height {
+  height: 80px;
+  font-size: 14px;
 }
 
 .bg-gradient {

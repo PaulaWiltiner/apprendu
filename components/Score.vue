@@ -9,7 +9,7 @@
         progredir.
         <i class="bi bi-emoji-smile" style="font-size: 24px"></i>
       </p>
-      <Button @click="goBack" back>Voltar para o módulo</Button>
+      <Button @click="goBack" back>Finalizar módulo</Button>
     </div>
   </div>
   <Form v-else />
