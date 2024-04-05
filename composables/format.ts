@@ -1,4 +1,4 @@
-// // import katex from "katex";
+
 
 export function useFormat() {
   function formatParagraph(text: string) {
@@ -11,21 +11,3 @@ export function useFormat() {
     formatParagraph,
   };
 }
-// }
-
-// useMathJax.ts
-// import { useHead } from "@nuxtjs/composition-api";
-
-// export default function useMathJax() {
-// useHead(() => ({
-//     script: [
-//       {
-//         src: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML",
-//         async: true,
-//         defer: true,
-//       },
-//     ],
-//   }));
-
-//   return window.MathJax;
-// }
