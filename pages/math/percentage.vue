@@ -387,35 +387,6 @@ const correctMatch = ref([
 
 const questions = reactive([
   {
-    isAssociationQuestion: true,
-    type: AssociationQuestion,
-    name: "Associação - Porcentagem",
-    props: {
-      options: items.map((item) => ({
-        ...item,
-        isStretching: false,
-        startX: null,
-        startY: null,
-        endX: null,
-        endY: null,
-        lineStyle: {
-          width: "5px",
-          transform: "rotate(0deg)",
-          transformOrigin: "0% 0%",
-        },
-      })),
-      questionText: "Associe as formas percentuais com as formas fracionárias.",
-      correctAnswer: correctMatch.value,
-      background: "#9f98ba",
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 1,
-    userAnswer: null,
-    tip: "Erros são oportunidades de aprendizado, continue tentando, você está progredindo! Tente se lembrar da tabela das formas percentual, fracionária e decimal.",
-    curiosity: "Continue se dedicando para alcançar os seus sonhos!",
-  },
-  {
     type: PuzzleQuestion,
     name: "Quebra-cabeça - Porcentagem",
     props: {
