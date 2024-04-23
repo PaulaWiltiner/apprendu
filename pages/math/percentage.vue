@@ -543,222 +543,223 @@ const questions = reactive([
     curiosity:
       "Observe que se a casa fosse 20% mais barata do que o preço médio do bairro, ao invés de somar o valor, teríamos que subtrair.",
   },
-  {
-    type: MultipleChoice,
-    name: "Pisa - Celulares - Parte 1",
-    props: {
-      question: "Escolhendo um celular - Parte 1",
-      questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
-
-      <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
-
-      <table border="1" style="border:1px solid gray; width:100%">
-        <thead>
-          <tr style="border:1px solid gray">
-            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
-            <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
-            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
-          </tr>
-          <tr>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>&nbsp;</p>
-
-      <p>Um cliente quer comprar seu celular da empresa que fabrica menos celulares defeituosos por dia, por confiar mais em seu processo produtivo. Ajude este cliente a realizar esta an&aacute;lise.</p>
-
-      <p>Para identificar qual fabricante possui menos defeitos, o cliente deve:</p>`,
-      options: [
-        `Olhar unicamente para a empresa que possui o menor percentual de celulares defeituosos por dia, pois esta empresa produz menos celulares defeituosos no geral.`,
-        `Calcular a quantidade de celulares defeituosos fabricados em cada uma das empresas e comparar os valores.`,
-      ],
-      correctAnswer: `Calcular a quantidade de celulares defeituosos fabricados em cada uma das empresas e comparar os valores.`,
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 7,
-    userAnswer: null,
-    tip: `Estruturar a resolução de um exercício é uma parte essencial para desenvolver seu raciocínio.`,
-    curiosity:
-      "Não podemos olhar unicamente para o percentual de celulares defeituosos para esta análise, pois a quantidade de celulares produzidos vai interferir nesta análise. Observe, por exemplo, que 1% de 1000 é igual a 10, e 5% de 100 é igual a 5.",
-  },
-  {
-    type: MultipleChoice,
-    name: "Pisa - Celulares - Parte 2",
-    props: {
-      question: "Escolhendo um celular - Parte 2",
-      questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
-
-      <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
-
-      <table border="1" style="border:1px solid gray; width:100%">
-        <thead>
-          <tr style="border:1px solid gray">
-            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
-            <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
-            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
-          </tr>
-          <tr>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>&nbsp;</p>
-
-     <p><strong>Vamos ent&atilde;o calcular a quantidade de aparelhos defeituosos em cada uma das empresas.</strong></p>
-
-    <p>Qual &eacute; a quantidade de aparelhos defeituosos produzidos no Fabricante A?</p>`,
-      options: [
-        String.raw`$$ \left(\dfrac {3\% \text{ de}\ 4000}{100}\right) = \left(\dfrac {\dfrac{3}{100} \times 4000}{100}\right) = 1,2 $$`,
-        String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5}{100}\right) \times 9000 = 450 $$`,
-        String.raw`$$ 3\% \text{ de }\ 4000 = \left(\dfrac {3}{100}\right) \times 4000 = 120 $$`,
-        String.raw`$$ 3\% \text{ de }\ 4000 = \left(\dfrac {3 \times 100}{4000}\right) = 0,075 $$`,
-      ],
-      correctAnswer: String.raw`$$ 3\% \text{ de }\ 4000 = \left(\dfrac {3}{100}\right) \times 4000 = 120 $$`,
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 8,
-    userAnswer: null,
-    tip: `Para acertar esta questão, lembre-se de que precisamos do percentual de produtos defeituosos por dia da fábrica A, e da quantidade de aparelhos produzidos por dia. O produto destes dois valores nos dará a quantidade de aparelhos com defeitos em um dia.`,
-    curiosity:
-      "A fábrica A produz em média 120 aparelhos com defeitos por dia. Análises como esta são muito utilizadas no dia a dia das empresas.",
-  },
-  {
-    type: MultipleChoice,
-    name: "Pisa - Celulares - Parte 3",
-    props: {
-      question: "Escolhendo um celular - Parte 3",
-      questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
-
-      <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
-
-      <table border="1" style="border:1px solid gray; width:100%">
-        <thead>
-          <tr style="border:1px solid gray">
-            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
-            <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
-            <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
-          </tr>
-          <tr>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
-            <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
-            <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>&nbsp;</p>
-
-     <p><strong>Agora basta calcularmos a quantidade de aparelhos defeituosos no Fabricante B e comparar os valores.</strong></p>
-
-    <p>Qual é a quantidade de aparelhos defeituosos produzidos no Fabricante B?</p>`,
-      options: [
-        String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5 \times 100}{9000}\right) = 0,05 $$`,
-        String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5}{100}\right) \times 9000 = 450 $$`,
-        String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {3}{100}\right) \times 9000 = 270 $$`,
-        String.raw`$$ \left(\dfrac {5\% \text{ de}\ 4000}{100}\right) = \left(\dfrac {\dfrac{5}{100} \times 4000}{100}\right) = 2 $$`,
-      ],
-      correctAnswer: String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5}{100}\right) \times 9000 = 450 $$`,
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 9,
-    userAnswer: null,
-    tip: `São produzidos 9 mil aparelhos por dia no Fabricante B. Precisamos descobrir quantos destes são defeituosos. Sabemos que 5% dos aparelhos do Fabricante B são defeituosos. Então precisamos calcular quanto é 5% de 9000.`,
-    curiosity:
-      "Como a fábrica A produz em média 120 aparelhos com defeitos e a fábrica B produz em média 450 aparelhos com defeitos, este cliente vai preferir comprar da fábrica A.",
-  },
-  {
-    type: MultipleChoice,
-    name: "Pisa - combustível - Parte 1",
-    props: {
-      question: "Economizando combustível - Parte1",
-      questionText: `<p>Devido ao alto custo de &oacute;leo diesel, os propriet&aacute;rios do navio Nova Onda est&atilde;o pensando em equipar seu navio com uma <em>kite sail</em>, uma esp&eacute;cie de vela que auxilia o deslocamento do navio pela for&ccedil;a do vento. Calcula-se que uma <em>kite sail</em> tenha o potencial para reduzir o consumo de diesel em cerca de 20%.</p>
-
-      <img src="/img/new_wave.png" style="height:auto; width:100%" /></td>
-
-      <p>&nbsp;</p>
-
-      <p>Qual ser&aacute; o novo consumo de <em>diesel</em> do navio Nova Onda ap&oacute;s a compra do <em>kite sail</em>?</p>
-
-      <p>Selecione a alternativa que cont&eacute;m o passo a passo correto para resolver este problema.</p>
-     `,
-      options: [
-        `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e subtrair este valor obtido de 3.500.000 litros.`,
-        `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e somar este valor obtido em 3.500.000 litros.`,
-        `Para achar a resposta, preciso calcular quanto é 20% de 12.000 tons e subtrair este valor obtido de 12.000 tons.`,
-      ],
-      correctAnswer: `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e subtrair este valor obtido de 3.500.000 litros.`,
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 5,
-    userAnswer: null,
-    tip: `Precisamos calcular o novo consumo de diesel pelo navio. Com a kite sail o navio vai ter uma redução de consumo em 20%. Precisamos então calcular quanto é 20% do consumo atual de diesel (3.500.000 litros), e subtrair o valor encontrado do consumo atual de diesel.`,
-    curiosity: "Porcentagem é muito utilizada para análises como esta.",
-  },
-  {
-    type: MultipleChoice,
-    name: "Pisa - combustível - Parte 2",
-    props: {
-      question: "Economizando combustível - Parte2",
-      questionText: `<p>Devido ao alto custo de &oacute;leo diesel, os propriet&aacute;rios do navio Nova Onda est&atilde;o pensando em equipar seu navio com uma <em>kite sail</em>, uma esp&eacute;cie de vela que auxilia o deslocamento do navio pela for&ccedil;a do vento. Calcula-se que uma <em>kite sail</em> tenha o potencial para reduzir o consumo de diesel em cerca de 20%.</p>
-
-      <img src="/img/new_wave.png" style="height:auto; width:100%" /></td>
-
-      <p>&nbsp;</p>
-
-      <p>Qual ser&aacute; o novo consumo de <em>diesel</em> do navio Nova Onda ap&oacute;s a compra do <em>kite sail</em>?</p>
-
-      <p>Selecione a alternativa que contém a expressão E o valor do novo consumo de diesel pelo navio.</p>
-
-      <p style="color:#678ac9">Obs: para facilitar as contas, utilizaremos o valor 3,5 milhões ao invés de 3.500.000. </p>
-     `,
-      options: [
-        String.raw`$$ 3,5 - 20\% \text{ de }\ 3,5 = 3,5 - \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 - 0,7 = 2,8 $$`,
-        String.raw`$$ 3,5 + 20\% \text{ de }\ 3,5 = 3,5 + \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 + 0,7 = 4,2 $$`,
-        String.raw`$$ 20\% \text{ de }\ 3,5 = \left(\dfrac {20}{100}\right) \times 3,5 = 0,7 $$`,
-      ],
-      correctAnswer: String.raw`$$ 3,5 - 20\% \text{ de }\ 3,5 = 3,5 - \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 - 0,7 = 2,8 $$`,
-    },
-    isCorrect: false,
-    userAnswerIsCorrect: true,
-    weight: 6,
-    userAnswer: null,
-    tip: `Precisamos encontrar o novo consumo de combustível. O consumo atual é de 3,5 milhões de litros de diesel. Como o consumo vai diminuir em 20%, precisamos calcular quanto é 20% de 3,5 milhões, e subtrair o valor encontrado de 3,5 milhões. Obs: se o consumo por algum motivo aumentasse, precisaríamos somar o valor obtido no valor total.`,
-    curiosity:
-      "O novo consumo é de 2.800.000 litros de diesel. O navio passa a economizar 700 mil litros de combustível.",
-  },
 ]);
+
+// {
+//     type: MultipleChoice,
+//     name: "Pisa - Celulares - Parte 1",
+//     props: {
+//       question: "Escolhendo um celular - Parte 1",
+//       questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
+
+//       <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
+
+//       <table border="1" style="border:1px solid gray; width:100%">
+//         <thead>
+//           <tr style="border:1px solid gray">
+//             <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
+//             <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
+//             <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
+//             <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
+//           </tr>
+//           <tr>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
+//             <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
+//           </tr>
+//         </tbody>
+//       </table>
+
+//       <p>&nbsp;</p>
+
+//       <p>Um cliente quer comprar seu celular da empresa que fabrica menos celulares defeituosos por dia, por confiar mais em seu processo produtivo. Ajude este cliente a realizar esta an&aacute;lise.</p>
+
+//       <p>Para identificar qual fabricante possui menos defeitos, o cliente deve:</p>`,
+//       options: [
+//         `Olhar unicamente para a empresa que possui o menor percentual de celulares defeituosos por dia, pois esta empresa produz menos celulares defeituosos no geral.`,
+//         `Calcular a quantidade de celulares defeituosos fabricados em cada uma das empresas e comparar os valores.`,
+//       ],
+//       correctAnswer: `Calcular a quantidade de celulares defeituosos fabricados em cada uma das empresas e comparar os valores.`,
+//     },
+//     isCorrect: false,
+//     userAnswerIsCorrect: true,
+//     weight: 7,
+//     userAnswer: null,
+//     tip: `Estruturar a resolução de um exercício é uma parte essencial para desenvolver seu raciocínio.`,
+//     curiosity:
+//       "Não podemos olhar unicamente para o percentual de celulares defeituosos para esta análise, pois a quantidade de celulares produzidos vai interferir nesta análise. Observe, por exemplo, que 1% de 1000 é igual a 10, e 5% de 100 é igual a 5.",
+//   },
+//   {
+//     type: MultipleChoice,
+//     name: "Pisa - Celulares - Parte 2",
+//     props: {
+//       question: "Escolhendo um celular - Parte 2",
+//       questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
+
+//       <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
+
+//       <table border="1" style="border:1px solid gray; width:100%">
+//         <thead>
+//           <tr style="border:1px solid gray">
+//             <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
+//             <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
+//             <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
+//             <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
+//           </tr>
+//           <tr>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
+//             <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
+//           </tr>
+//         </tbody>
+//       </table>
+
+//       <p>&nbsp;</p>
+
+//      <p><strong>Vamos ent&atilde;o calcular a quantidade de aparelhos defeituosos em cada uma das empresas.</strong></p>
+
+//     <p>Qual &eacute; a quantidade de aparelhos defeituosos produzidos no Fabricante A?</p>`,
+//       options: [
+//         String.raw`$$ \left(\dfrac {3\% \text{ de}\ 4000}{100}\right) = \left(\dfrac {\dfrac{3}{100} \times 4000}{100}\right) = 1,2 $$`,
+//         String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5}{100}\right) \times 9000 = 450 $$`,
+//         String.raw`$$ 3\% \text{ de }\ 4000 = \left(\dfrac {3}{100}\right) \times 4000 = 120 $$`,
+//         String.raw`$$ 3\% \text{ de }\ 4000 = \left(\dfrac {3 \times 100}{4000}\right) = 0,075 $$`,
+//       ],
+//       correctAnswer: String.raw`$$ 3\% \text{ de }\ 4000 = \left(\dfrac {3}{100}\right) \times 4000 = 120 $$`,
+//     },
+//     isCorrect: false,
+//     userAnswerIsCorrect: true,
+//     weight: 8,
+//     userAnswer: null,
+//     tip: `Para acertar esta questão, lembre-se de que precisamos do percentual de produtos defeituosos por dia da fábrica A, e da quantidade de aparelhos produzidos por dia. O produto destes dois valores nos dará a quantidade de aparelhos com defeitos em um dia.`,
+//     curiosity:
+//       "A fábrica A produz em média 120 aparelhos com defeitos por dia. Análises como esta são muito utilizadas no dia a dia das empresas.",
+//   },
+//   {
+//     type: MultipleChoice,
+//     name: "Pisa - Celulares - Parte 3",
+//     props: {
+//       question: "Escolhendo um celular - Parte 3",
+//       questionText: `<p>Duas empresas fabricantes de celulares realizam testes di&aacute;rios em suas linhas de produ&ccedil;&atilde;o para verificar se os aparelhos est&atilde;o funcionando corretamente. Aqueles que apresentam defeitos s&atilde;o retirados e enviados para conserto.</p>
+
+//       <p>A tabela abaixo cont&eacute;m os valores obtidos por cada empresa:</p>
+
+//       <table border="1" style="border:1px solid gray; width:100%">
+//         <thead>
+//           <tr style="border:1px solid gray">
+//             <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Fabricante</span></th>
+//             <th style="text-align:center; width:142px;border:1px solid gray"><span style="color:#4e5f70">N&uacute;mero de celulares f&aacute;bricados por dia</span></th>
+//             <th style="text-align:center; width:137px;border:1px solid gray"><span style="color:#4e5f70">Porcentagem de celulares defeituosos por dia</span></th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>Fabricante A</strong></span></td>
+//             <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><span style="color:#9266be"><strong>4000</strong></span></td>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#9266be"><strong>3%</strong></span></td>
+//           </tr>
+//           <tr>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>Fabricante B</strong></span></td>
+//             <td style="height:60px; text-align:center; width:142px;border:1px solid gray"><strong><span style="color:#678ac9">9000</span></strong></td>
+//             <td style="text-align:center; width:137px;border:1px solid gray"><span style="color:#678ac9"><strong>5%</strong></span></td>
+//           </tr>
+//         </tbody>
+//       </table>
+
+//       <p>&nbsp;</p>
+
+//      <p><strong>Agora basta calcularmos a quantidade de aparelhos defeituosos no Fabricante B e comparar os valores.</strong></p>
+
+//     <p>Qual é a quantidade de aparelhos defeituosos produzidos no Fabricante B?</p>`,
+//       options: [
+//         String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5 \times 100}{9000}\right) = 0,05 $$`,
+//         String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5}{100}\right) \times 9000 = 450 $$`,
+//         String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {3}{100}\right) \times 9000 = 270 $$`,
+//         String.raw`$$ \left(\dfrac {5\% \text{ de}\ 4000}{100}\right) = \left(\dfrac {\dfrac{5}{100} \times 4000}{100}\right) = 2 $$`,
+//       ],
+//       correctAnswer: String.raw`$$ 5\% \text{ de }\ 9000 = \left(\dfrac {5}{100}\right) \times 9000 = 450 $$`,
+//     },
+//     isCorrect: false,
+//     userAnswerIsCorrect: true,
+//     weight: 9,
+//     userAnswer: null,
+//     tip: `São produzidos 9 mil aparelhos por dia no Fabricante B. Precisamos descobrir quantos destes são defeituosos. Sabemos que 5% dos aparelhos do Fabricante B são defeituosos. Então precisamos calcular quanto é 5% de 9000.`,
+//     curiosity:
+//       "Como a fábrica A produz em média 120 aparelhos com defeitos e a fábrica B produz em média 450 aparelhos com defeitos, este cliente vai preferir comprar da fábrica A.",
+//   },
+//   {
+//     type: MultipleChoice,
+//     name: "Pisa - combustível - Parte 1",
+//     props: {
+//       question: "Economizando combustível - Parte1",
+//       questionText: `<p>Devido ao alto custo de &oacute;leo diesel, os propriet&aacute;rios do navio Nova Onda est&atilde;o pensando em equipar seu navio com uma <em>kite sail</em>, uma esp&eacute;cie de vela que auxilia o deslocamento do navio pela for&ccedil;a do vento. Calcula-se que uma <em>kite sail</em> tenha o potencial para reduzir o consumo de diesel em cerca de 20%.</p>
+
+//       <img src="/img/new_wave.png" style="height:auto; width:100%" /></td>
+
+//       <p>&nbsp;</p>
+
+//       <p>Qual ser&aacute; o novo consumo de <em>diesel</em> do navio Nova Onda ap&oacute;s a compra do <em>kite sail</em>?</p>
+
+//       <p>Selecione a alternativa que cont&eacute;m o passo a passo correto para resolver este problema.</p>
+//      `,
+//       options: [
+//         `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e subtrair este valor obtido de 3.500.000 litros.`,
+//         `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e somar este valor obtido em 3.500.000 litros.`,
+//         `Para achar a resposta, preciso calcular quanto é 20% de 12.000 tons e subtrair este valor obtido de 12.000 tons.`,
+//       ],
+//       correctAnswer: `Para achar a resposta, preciso calcular quanto é 20% de 3.500.000 litros e subtrair este valor obtido de 3.500.000 litros.`,
+//     },
+//     isCorrect: false,
+//     userAnswerIsCorrect: true,
+//     weight: 5,
+//     userAnswer: null,
+//     tip: `Precisamos calcular o novo consumo de diesel pelo navio. Com a kite sail o navio vai ter uma redução de consumo em 20%. Precisamos então calcular quanto é 20% do consumo atual de diesel (3.500.000 litros), e subtrair o valor encontrado do consumo atual de diesel.`,
+//     curiosity: "Porcentagem é muito utilizada para análises como esta.",
+//   },
+//   {
+//     type: MultipleChoice,
+//     name: "Pisa - combustível - Parte 2",
+//     props: {
+//       question: "Economizando combustível - Parte2",
+//       questionText: `<p>Devido ao alto custo de &oacute;leo diesel, os propriet&aacute;rios do navio Nova Onda est&atilde;o pensando em equipar seu navio com uma <em>kite sail</em>, uma esp&eacute;cie de vela que auxilia o deslocamento do navio pela for&ccedil;a do vento. Calcula-se que uma <em>kite sail</em> tenha o potencial para reduzir o consumo de diesel em cerca de 20%.</p>
+
+//       <img src="/img/new_wave.png" style="height:auto; width:100%" /></td>
+
+//       <p>&nbsp;</p>
+
+//       <p>Qual ser&aacute; o novo consumo de <em>diesel</em> do navio Nova Onda ap&oacute;s a compra do <em>kite sail</em>?</p>
+
+//       <p>Selecione a alternativa que contém a expressão E o valor do novo consumo de diesel pelo navio.</p>
+
+//       <p style="color:#678ac9">Obs: para facilitar as contas, utilizaremos o valor 3,5 milhões ao invés de 3.500.000. </p>
+//      `,
+//       options: [
+//         String.raw`$$ 3,5 - 20\% \text{ de }\ 3,5 = 3,5 - \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 - 0,7 = 2,8 $$`,
+//         String.raw`$$ 3,5 + 20\% \text{ de }\ 3,5 = 3,5 + \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 + 0,7 = 4,2 $$`,
+//         String.raw`$$ 20\% \text{ de }\ 3,5 = \left(\dfrac {20}{100}\right) \times 3,5 = 0,7 $$`,
+//       ],
+//       correctAnswer: String.raw`$$ 3,5 - 20\% \text{ de }\ 3,5 = 3,5 - \left(\dfrac {20}{100}\right) \times 3,5 = 3,5 - 0,7 = 2,8 $$`,
+//     },
+//     isCorrect: false,
+//     userAnswerIsCorrect: true,
+//     weight: 6,
+//     userAnswer: null,
+//     tip: `Precisamos encontrar o novo consumo de combustível. O consumo atual é de 3,5 milhões de litros de diesel. Como o consumo vai diminuir em 20%, precisamos calcular quanto é 20% de 3,5 milhões, e subtrair o valor encontrado de 3,5 milhões. Obs: se o consumo por algum motivo aumentasse, precisaríamos somar o valor obtido no valor total.`,
+//     curiosity:
+//       "O novo consumo é de 2.800.000 litros de diesel. O navio passa a economizar 700 mil litros de combustível.",
+//   },
 
 // {
 

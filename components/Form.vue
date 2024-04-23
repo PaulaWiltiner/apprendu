@@ -23,15 +23,6 @@
       class="form-control form-control--height"
       placeholder="Pensando na sua jornada de aprendizado, em que momento um aplicativo como esse poderia te ajudar?"
     ></textarea>
-    <textarea
-      v-model="resposta5"
-      class="form-control form-control--height"
-      placeholder="Se quiser concorrer a um sorteio de (50, 30 ,20) reais , coloque o seu whatsapp abaixo para entrarmos em contato."
-    ></textarea>
-    <p>
-      Obs: O primeiro sorteado levará 50 reais, o segundo levará 30 e o terceiro
-      20 reais.
-    </p>
 
     <div class="input-group-append">
       <Button @click="send" :disabled="loading" :loading="loading" confirm>
@@ -55,7 +46,6 @@ const resposta1 = ref(null);
 const resposta2 = ref(null);
 const resposta3 = ref(null);
 const resposta4 = ref(null);
-const resposta5 = ref(null);
 
 const loading = ref(false);
 const hasEmail = ref(false);
@@ -67,7 +57,6 @@ async function send() {
     conteudo_licoes: resposta2.value,
     gostaria_de_ver: resposta3.value,
     momento_da_jornada: resposta4.value,
-    telefone: resposta5.value,
   });
   loading.value = false;
   hasEmail.value = true;

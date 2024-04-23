@@ -8,7 +8,7 @@
       v-model="email"
       type="email"
       class="form-control"
-      placeholder="Digite seu e-mail"
+      placeholder="nome@email.com"
     />
     <div class="input-group-append">
       <Button
