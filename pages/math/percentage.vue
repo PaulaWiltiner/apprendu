@@ -208,20 +208,20 @@ const contents = reactive([
 
 <p>Portanto:</p>
 
-<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:13px;width:100%;align-items:center;white-space:nowrap"> 
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:13px;width:100%;align-items:center;white-space:nowrap">
   <p >$$ \text{\%\ de camisetas brancas} = $$</p>
   <p >$$ \left(\dfrac {Parte}{Todo}\right) \times\ 100  $$</p>
 </div>
 
 <p>E, trocando os valores, vamos obter:</p>
 
-<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:13px;width:100%;align-items:center;white-space:nowrap;"> 
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:13px;width:100%;align-items:center;white-space:nowrap;">
 
   <p >$$ \left(\dfrac {\text{Nº camisetas brancas}}{\text{Nº total de camisetas}}\right) \times\ 100  = $$</p>
   <p >$$ \left(\dfrac {60}{100}\right) \times\ 100  = $$</p>
   <p >$$ \text{ 60\%}  $$</p>
 
-  
+
 </div>
 
 <p>Portanto, a porcentagem de camisetas brancas &eacute; <span style="color:#f39c12"><span style="font-size:14px"><strong>60%</strong></span></span><span style="color:#678ac9"><span style="font-size:14px">.</span></span></p>
@@ -258,7 +258,7 @@ const contents = reactive([
 
 <p>Com essas informações, podemos determinar quantos pedaços de pizza foram comidos por Gabriel, valor que chamaremos de X. O cálculo é o seguinte:</p>
 
-<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:14px;width:100%;align-items:center;white-space:nowrap"> 
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:14px;width:100%;align-items:center;white-space:nowrap">
   <p>$$ \text{X} = \text{50\% de 8} = $$</p>
   <p>$$ \left(\dfrac {50}{100}\right) \times\ 8 = $$</p>
   <p>$$ \text{ 4 pedaços} $$</p>
@@ -392,36 +392,37 @@ const questions = reactive([
     props: {
       options: [
         {
-          text: "Nº de pedaços de pizza",
+          text: "Nº do total de questões",
           width: "auto",
           height: "40px",
           clicked: true,
         },
         { text: "8", width: "auto", height: "40px" },
-        { text: "10", width: "auto", height: "40px" },
         { text: "4", width: "auto", height: "40px" },
+        { text: "10", width: "auto", height: "40px" },
         { text: "100", width: "auto", height: "40px" },
-        { text: "50%", width: "auto", height: "40px" },
+        { text: "80%", width: "auto", height: "40px" },
         { text: "40%", width: "auto", height: "40px" },
+        { text: "20", width: "auto", height: "40px" },
         { text: "100", width: "auto", height: "40px" },
         {
-          text: "Nº de pedaços comidos pelo Gabriel",
+          text: "Nº de questões resolvidas pelo Heitor",
           width: "auto",
           height: "40px",
           clicked: true,
         },
       ],
       questionText:
-        "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu? <p>&nbsp;</p>",
+        "Um grupo de estudantes estava participando de uma competição de matemática. A prova consistia em 10 questões. Se Heitor conseguiu resolver 8 dessas questões sozinho, qual a porcentagem das questões que ele conseguiu resolver?<p>&nbsp;</p>",
       correctAnswer: {
         fristFraction: [
-          "Nº de pedaços comidos pelo Gabriel",
-          "Nº de pedaços de pizza",
+          "Nº de questões resolvidas pelo Heitor",
+          "Nº do total de questões",
         ],
         fristMultiplier: ["100"],
-        secondFraction: ["4", "8"],
+        secondFraction: ["8", "10"],
         secondMultiplier: ["100"],
-        result: ["50%"],
+        result: ["80%"],
       },
       userAnswer: {
         fristFraction: [null, null],
@@ -430,6 +431,28 @@ const questions = reactive([
         secondMultiplier: [null],
         result: [null],
       },
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 2,
+    userAnswer: null,
+    tip: String.raw`Lembre-se de dividir a PARTE pelo TODO.  $$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ 100 $$`,
+    curiosity: "Continue se dedicando para alcançar os seus sonhos!",
+  },
+  {
+    type: MultipleChoice,
+    name: "Multipla Escolha - Pizza",
+    props: {
+      question: "Pizza",
+      questionText:
+        "Alguns amigos se reuniram para comer uma pizza no feriado. A pizza foi dividida em 8 pedaços iguais. Se Gabriel comeu sozinho 4 pedaços, qual a porcentagem da pizza que ele comeu? <p>&nbsp;</p>",
+      options: [
+        String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel } \times\ 100 }{100} = \dfrac {4 \times\ 100}{100} = \text{4\%} $$`,
+        String.raw`$$ \left( \dfrac {\text{Nº de pedaços de pizza}}{\text{Nº de pedaços comidos pelo Gabriel}} \right) \times\ 100 = \left(\dfrac {8}{4} \right) \times\ 100 = \text{200\%} $$`,
+        String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
+        String.raw`$$ \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}}= \dfrac {4}{8} = \text{0,5} $$`,
+      ],
+      correctAnswer: String.raw`$$ \left( \dfrac {\text{Nº de pedaços comidos pelo Gabriel}}{\text{Nº de pedaços de pizza}} \right) \times\ 100 = \left(\dfrac {4}{8} \right) \times\ 100 = \text{50\%} $$`,
     },
     isCorrect: false,
     userAnswerIsCorrect: true,
@@ -487,6 +510,22 @@ const questions = reactive([
     curiosity: "Continue se dedicando para alcançar os seus sonhos!",
   },
   {
+    type: TrueFalseQuestion,
+    name: "Fórmula - Porcentagem",
+    props: {
+      question:
+        "Analise cuidadosamente a fórmula abaixo e marque verdadeiro se estiver correta ou falso se ela for incorreta:",
+      questionText: String.raw`<p style="color:#fff;margin-bottom:0px">$$ X\% \text { de } A = \left(\dfrac {A}{100}\right) \times\ X $$</p>`,
+      correctAnswer: "false",
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 7,
+    userAnswer: "",
+    tip: String.raw`Lembre-se que para descobrir quanto vale X% de qualquer valor, basta usar a fórmula: $$ X\% \text { de } A = \left(\dfrac {X}{100}\right) \times\ A $$`,
+    curiosity: "Continue se dedicando para alcançar os seus sonhos!",
+  },
+  {
     type: MultipleChoice,
     name: "Multipla Escolha - Preço da Casa - Parte 1",
     props: {
@@ -540,6 +579,25 @@ const questions = reactive([
     weight: 6,
     userAnswer: null,
     tip: `Lembre-se de adicionar o acréscimo ao preço médio das casas para encontrar o preço da casa específica.`,
+    curiosity:
+      "Observe que se a casa fosse 20% mais barata do que o preço médio do bairro, ao invés de somar o valor, teríamos que subtrair.",
+  },
+  {
+    type: FillInTheBlankQuestion,
+    name: "Preencha o espaço em branco - Compras",
+    props: {
+      question: "Complete a frase:",
+      questionText:
+        "O valor da mochila que a Bruna queria comprar era 100 reais no ano passado mas agora custa 200 reais. Essa mochila teve um aumento de ______.",
+      answerType: "text",
+      correctAnswer: "100%",
+      options: ["200%", "50%", "100%", "20%"],
+    },
+    isCorrect: false,
+    userAnswerIsCorrect: true,
+    weight: 5,
+    userAnswer: null,
+    tip: `Primeiro, já que se trata de um aumento, subtraia o valor atual do valor antigo e , em seguida , use o resultado como a 'Parte' na fórmula:  $$ \text{Porcentagem} =\left(\dfrac {Parte}{Todo}\right) \times\ 100 $$`,
     curiosity:
       "Observe que se a casa fosse 20% mais barata do que o preço médio do bairro, ao invés de somar o valor, teríamos que subtrair.",
   },

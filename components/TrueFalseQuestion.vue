@@ -9,7 +9,7 @@
         color="white"
         :shadow="false"
       >
-        <div v-html="renderedContent(questionText)" />
+        <div class="text" v-html="renderedContent(questionText)" />
       </Card>
       <div class="btn-group mt-2" role="group">
         <button
@@ -79,6 +79,12 @@ const cardBackground = ref("#f39c76");
 .title {
   color: black;
   font-size: 18px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-container {

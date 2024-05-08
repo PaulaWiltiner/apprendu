@@ -89,7 +89,7 @@ function checkAnswer() {
   width: 100%;
   text-align: left;
   border: 1px solid #3f5982;
-  font-size: 12px;
+  font-size: 8px;
 }
 
 .btn-clicked {
